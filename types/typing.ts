@@ -27,13 +27,11 @@ export interface Spacing {
 // typing for color values used for components
 export interface Color {
   primary: string;
-  secondary: string;
   none: string;
   default: string;
   grey: string;
   success: string;
   error: string;
-  lightBlue: string;
 }
 
 export type SpacingNames = keyof Spacing;

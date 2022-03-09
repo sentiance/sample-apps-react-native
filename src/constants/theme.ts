@@ -6,13 +6,11 @@ const theme: DefaultTheme = {
   colors,
   color: {
     primary: colors.primary,
-    secondary: colors.secondary,
     none: colors.none,
     default: colors.default,
     grey: colors.grey,
     success: colors.success,
     error: colors.error,
-    lightBlue: colors.lightBlue,
   },
   font: {
     family: {
