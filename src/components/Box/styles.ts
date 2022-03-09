@@ -1,6 +1,8 @@
 import styled from 'styled-components/native';
 import {BoxProps} from './typings';
 
+// Style for Box component where attributes are values from theme
+
 export const StyledBoxView = styled.View<BoxProps>`
   background-color: ${props => props.theme.color.none};
   border-radius: ${props => props.theme.spacing.xs};

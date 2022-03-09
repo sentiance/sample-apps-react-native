@@ -1,3 +1,4 @@
+// typing values for text size
 export interface TextSize {
   h1: string;
   h2: string;
@@ -9,6 +10,8 @@ export interface TextSize {
   lg: string;
   xl: string;
 }
+
+// typing values for spacing of components
 export interface Spacing {
   none: string;
   xxs: string;
@@ -21,6 +24,7 @@ export interface Spacing {
   xxxl: string;
 }
 
+// typing for color values used for components
 export interface Color {
   primary: string;
   secondary: string;

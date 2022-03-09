@@ -1,7 +1,6 @@
 import 'styled-components';
 
 import {Color, Spacing, TextSize, Radius} from './typing';
-
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: any;
