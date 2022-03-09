@@ -28,7 +28,7 @@ const Home = () => {
       <Button
         title="Initialize SDK"
         onPress={() => handleButtonPress()}></Button>
-      <Box marginBottom="none">
+      <Box>
         <View>
           <Text>new screen</Text>
         </View>

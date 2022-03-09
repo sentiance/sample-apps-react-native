@@ -16,8 +16,6 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Header from './src/components/Header';
 import Dashboard from './src/views/Dashboard';
 import Home from './src/views/Home';
-import theme from './src/constants/theme';
-import {ThemeProvider} from 'styled-components/native';
 
 const App = () => {
   const [showScreen, setShowScreen] = useState<boolean | string>(false);
@@ -44,14 +42,10 @@ const App = () => {
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <ThemeProvider theme={theme}>
-        <>
-          <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-          <Header />
-          {showScreen === 'DASHBOARD' && <Dashboard />}
-          {showScreen === 'HOME' && <Home />}
-        </>
-      </ThemeProvider>
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <Header />
+      {showScreen === 'DASHBOARD' && <Dashboard />}
+      {showScreen === 'HOME' && <Home />}
     </SafeAreaView>
   );
 };
