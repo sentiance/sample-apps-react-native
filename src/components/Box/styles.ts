@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     shadowRadius: spacing.lg,
     shadowOpacity: 1,
     elevation: 3,
+    marginHorizontal: spacing.xs,
   },
 });
 export default styles;
