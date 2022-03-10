@@ -5,7 +5,7 @@ import spacing from '../../constants/spacing';
 // Style for Box component
 
 const styles = StyleSheet.create({
-  styledBoxView: {
+  box: {
     backgroundColor: colors.none,
     borderRadius: spacing.xs,
     marginBottom: spacing.xs,
