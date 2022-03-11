@@ -36,7 +36,9 @@ const App = () => {
     });
   }, []);
 
-  if (!showScreen) return null;
+  if (!showScreen) {
+    return null;
+  }
 
   return (
     <SafeAreaView style={backgroundStyle}>

@@ -1,8 +1,8 @@
 import React from 'react';
-import {Button, View} from 'react-native';
+import {Button, Text, View} from 'react-native';
 import axios from 'axios';
-import RNSentiance from 'react-native-sentiance';
 import contants from '../constants';
+import Box from '../components/Box';
 
 /**
  * Initializes the SDK
@@ -28,6 +28,11 @@ const Home = () => {
       <Button
         title="Initialize SDK"
         onPress={() => handleButtonPress()}></Button>
+      <Box>
+        <View>
+          <Text>new screen</Text>
+        </View>
+      </Box>
     </View>
   );
 };
