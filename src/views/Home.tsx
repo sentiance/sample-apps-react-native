@@ -1,8 +1,9 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
+import {Button, View} from 'react-native';
 import axios from 'axios';
 import contants from '../constants';
 import Box from '../components/Box';
+import Badge from '../components/Badge';
 
 /**
  * Initializes the SDK
@@ -30,7 +31,11 @@ const Home = () => {
         onPress={() => handleButtonPress()}></Button>
       <Box>
         <View>
-          <Text>new screen</Text>
+          <Badge
+            title="Init Status"
+            status="fail"
+            statusText="Not Initialized"
+          />
         </View>
       </Box>
     </View>
