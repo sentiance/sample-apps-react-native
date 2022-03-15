@@ -4,6 +4,7 @@ import axios from 'axios';
 import contants from '../constants';
 import Box from '../components/Box';
 import Badge from '../components/Badge';
+import InfoText from '../components/InfoText';
 import Button from '../components/Button';
 
 /**
@@ -35,6 +36,12 @@ const Home = () => {
             statusText="Not Initialized"
           />
         </View>
+        <InfoText
+          text="643988d9u23j842191h919"
+          title="User ID"
+          isCopyable={true}
+        />
+        <InfoText text="6439jkbadk24928000ka001" title="Install ID" />
       </Box>
       <Button
         text="Initialize SDK"

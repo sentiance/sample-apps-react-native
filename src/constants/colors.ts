@@ -4,7 +4,7 @@ const colors = {
   primary: '#3E66FB',
   none: '#ffffff',
   default: '#000000',
-  grey: '#ADB5BD',
+  grey: '#A0A5AB',
   green: '#3CC13B',
   lightGreen: '#EBF9EB',
   darkGreen: '#1E611D',
