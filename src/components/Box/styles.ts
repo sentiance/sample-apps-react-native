@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   box: {
     backgroundColor: colors.none,
     borderRadius: spacing.xs,
-    marginBottom: spacing.xs,
+    marginBottom: spacing.sm,
     padding: spacing.sm,
     shadowColor: 'rgba(0, 0, 0, 0.1)',
     shadowRadius: spacing.lg,

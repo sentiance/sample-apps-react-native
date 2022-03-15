@@ -1,9 +1,10 @@
 import React from 'react';
-import {Button, View} from 'react-native';
+import {View} from 'react-native';
 import axios from 'axios';
 import contants from '../constants';
 import Box from '../components/Box';
 import Badge from '../components/Badge';
+import Button from '../components/Button';
 
 /**
  * Initializes the SDK
@@ -26,9 +27,6 @@ const handleButtonPress = async () => {
 const Home = () => {
   return (
     <View>
-      <Button
-        title="Initialize SDK"
-        onPress={() => handleButtonPress()}></Button>
       <Box>
         <View>
           <Badge
@@ -38,6 +36,9 @@ const Home = () => {
           />
         </View>
       </Box>
+      <Button
+        text="Initialize SDK"
+        onClick={() => handleButtonPress()}></Button>
     </View>
   );
 };
