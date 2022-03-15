@@ -5,7 +5,7 @@ import {TextProps} from './typings';
 import {copy} from '../../assets';
 import Clipboard from '@react-native-community/clipboard';
 
-//Text component takes text and title as props
+//Text component takes text, isCopied and title as props
 
 const InfoText: FC<TextProps> = ({text, title, isCopied}): JSX.Element => {
   const copyToClipboard = (copiedText: string) => {
