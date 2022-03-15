@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     marginBottom: spacing.sm,
     marginHorizontal: spacing.sm,
-    paddingVertical: 12,
+    paddingVertical: spacing.s,
     borderRadius: spacing.xs,
     alignItems: 'center',
   },
