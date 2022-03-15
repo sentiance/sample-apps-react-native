@@ -3,7 +3,7 @@ const spacing = {
   xs: 8,
   s: 12,
   sm: 16,
-  md: 27,
+  md: 24,
   lg: 36,
   xl: 50,
   xxl: 80,

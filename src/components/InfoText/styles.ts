@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../constants/colors';
 import spacing from '../../constants/spacing';
+import size from '../../constants/size';
 
 // Style for Text component
 
@@ -11,10 +12,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
-    fontSize: 14,
+    fontSize: size.sm,
   },
   text: {
-    fontSize: 14,
+    fontSize: size.sm,
     color: colors.grey,
     marginTop: 4,
   },
@@ -22,8 +23,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   image: {
-    width: 24,
-    height: 24,
+    width: spacing.md,
+    height: spacing.md,
     marginHorizontal: spacing.sm,
   },
 });
