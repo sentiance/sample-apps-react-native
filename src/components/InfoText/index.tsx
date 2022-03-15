@@ -7,7 +7,7 @@ import Clipboard from '@react-native-community/clipboard';
 
 //Text component takes text, isCopied and title as props
 
-const InfoText: FC<TextProps> = ({text, title, isCopied}): JSX.Element => {
+const InfoText: FC<TextProps> = ({text, title, isCopyable}): JSX.Element => {
   const copyToClipboard = (copiedText: string) => {
     Clipboard.setString(copiedText);
     Alert.alert('Copied to clipboard');
@@ -17,7 +17,7 @@ const InfoText: FC<TextProps> = ({text, title, isCopied}): JSX.Element => {
       <Text style={styles.title}>{title}</Text>
       <View style={styles.textInsideView}>
         <Text style={styles.text}>{text}</Text>
-        {isCopied && (
+        {isCopyable && (
           <TouchableOpacity onPress={() => copyToClipboard(text)}>
             <Image style={styles.image} source={copy} />
           </TouchableOpacity>

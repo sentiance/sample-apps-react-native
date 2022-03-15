@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: size.sm,
     color: colors.grey,
-    marginTop: 4,
+    marginTop: spacing.xxs,
   },
   textInsideView: {
     flexDirection: 'row',

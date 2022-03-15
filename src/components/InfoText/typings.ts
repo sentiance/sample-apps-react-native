@@ -2,5 +2,5 @@
 export interface TextProps {
   text: string;
   title: string;
-  isCopied?: boolean;
+  isCopyable?: boolean;
 }

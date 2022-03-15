@@ -39,7 +39,7 @@ const Home = () => {
         <InfoText
           text="643988d9u23j842191h919"
           title="User ID"
-          isCopied={true}
+          isCopyable={true}
         />
         <InfoText text="6439jkbadk24928000ka001" title="Install ID" />
       </Box>
