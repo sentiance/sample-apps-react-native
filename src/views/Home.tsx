@@ -33,7 +33,7 @@ const Home = () => {
         <View>
           <Badge
             title="Init Status"
-            status="fail"
+            status="error"
             statusText="Not Initialized"
           />
         </View>
