@@ -1,10 +1,9 @@
 import React from 'react';
-import {Image, View, Text, TouchableOpacity} from 'react-native';
+import {View, Text} from 'react-native';
 import axios from 'axios';
 import contants from '../../constants';
-import Box from '../../components/Box';
+import BoxButton from '../../components/BoxButton';
 import styles from './styles';
-import {attach, forward} from '../../assets';
 
 /**
  * Initializes the SDK
@@ -33,17 +32,7 @@ const Home = () => {
       </View>
 
       <View style={styles.sdkBoxView}>
-        <Box>
-          <View style={styles.boxView}>
-            <Image style={styles.imageView} source={attach} />
-            <TouchableOpacity onPress={() => handleButtonPress()}>
-              <View style={styles.bottomView}>
-                <Text>Create User</Text>
-                <Image style={styles.forwardImage} source={forward} />
-              </View>
-            </TouchableOpacity>
-          </View>
-        </Box>
+        <BoxButton onPress={() => handleButtonPress()} />
       </View>
     </View>
   );
