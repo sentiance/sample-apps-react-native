@@ -43,9 +43,7 @@ const Home = () => {
         />
         <InfoText text="6439jkbadk24928000ka001" title="Install ID" />
       </Box>
-      <Button
-        text="Initialize SDK"
-        onClick={() => handleButtonPress()}></Button>
+      <Button text="Initialize SDK" onClick={() => handleButtonPress()} />
     </View>
   );
 };

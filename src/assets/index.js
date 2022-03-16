@@ -1,2 +1,4 @@
 import copy from './copy.png';
-export {copy};
+import logo from './logo.png';
+
+export {copy, logo};
