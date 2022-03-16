@@ -32,7 +32,7 @@ const Home = () => {
       </View>
 
       <View style={styles.sdkBoxView}>
-        <BoxButton onPress={() => handleButtonPress()} />
+        <BoxButton title="Create User" onPress={() => handleButtonPress()} />
       </View>
     </View>
   );
