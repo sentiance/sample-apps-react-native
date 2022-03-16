@@ -1,5 +1,7 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../constants/colors';
+import size from '../../constants/size';
+import spacing from '../../constants/spacing';
 
 const styles = StyleSheet.create({
   sdkBoxView: {
@@ -10,19 +12,19 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   imageView: {
-    width: 64,
-    height: 64,
+    width: spacing.xl,
+    height: spacing.xl,
   },
   forwardImage: {
-    width: 16,
-    height: 16,
+    width: spacing.sm,
+    height: spacing.sm,
     alignSelf: 'center',
-    marginStart: 8,
+    marginStart: spacing.xs,
   },
   bottomView: {
     flexDirection: 'row',
     alignContent: 'center',
-    marginTop: 16,
+    marginTop: spacing.sm,
   },
   boxView: {
     alignSelf: 'center',
@@ -34,7 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   helloText: {
-    fontSize: 36,
+    fontSize: size.xxl,
     fontWeight: 'bold',
     color: colors.primary,
   },

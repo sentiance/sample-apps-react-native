@@ -6,7 +6,7 @@ const spacing = {
   sm: 16,
   md: 24,
   lg: 36,
-  xl: 50,
+  xl: 64,
   xxl: 104,
 };
 
