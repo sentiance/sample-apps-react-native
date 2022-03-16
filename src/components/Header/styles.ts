@@ -8,12 +8,11 @@ import spacing from '../../constants/spacing';
 const styles = StyleSheet.create({
   headerView: {
     backgroundColor: colors.default,
-    width: '100%',
   },
 
   imageView: {
     marginVertical: spacing.s,
-    width: size.xxxl,
+    width: 194,
     height: size.xl,
     alignSelf: 'center',
   },
