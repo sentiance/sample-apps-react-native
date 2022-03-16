@@ -12,7 +12,7 @@ const TextView: FC<TextViewProps> = ({title, status}): JSX.Element => {
     } else if (status === 'success') {
       return <Text style={styles.statusSuccessText}>ALWAYS</Text>;
     } else {
-      <Text style={styles.statusProgressText}>WHILE IN USE</Text>;
+      return <Text style={styles.statusProgressText}>WHILE IN USE</Text>;
     }
   };
   return (
