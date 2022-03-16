@@ -38,7 +38,7 @@ const Home = () => {
             <Image style={styles.imageView} source={attach} />
             <TouchableOpacity onPress={() => handleButtonPress()}>
               <View style={styles.bottomView}>
-                <Text>Initialise SDK</Text>
+                <Text>Create User</Text>
                 <Image style={styles.forwardImage} source={forward} />
               </View>
             </TouchableOpacity>
