@@ -25,5 +25,8 @@ const styles = StyleSheet.create({
     fontSize: size.sm,
     color: colors.green,
   },
+  buttonView: {
+    marginBottom: 40,
+  },
 });
 export default styles;
