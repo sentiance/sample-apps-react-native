@@ -35,16 +35,24 @@ const Dashboard = () => {
               text="6439jkbadk24928000ka001"
             />
           </Box>
-          <Box>
-            <Text style={styles.permissionHeadingText}>Permissions status</Text>
-            <View style={styles.divider} />
-            <TextView title="Location" status="success" />
-            <View style={styles.divider} />
-            <TextView title="Motion" status="success" />
-            <View style={styles.divider} />
-            <Text style={styles.permissionText}>All permissions provided</Text>
-          </Box>
-          <Button onClick={() => {}} text="Stop SDK" />
+          <View style={{position: 'relative'}}>
+            <Box>
+              <Text style={styles.permissionHeadingText}>
+                Permissions status
+              </Text>
+              <View style={styles.divider} />
+              <TextView title="Location" status="success" />
+              <View style={styles.divider} />
+              <TextView title="Motion" status="success" />
+              <View style={styles.divider} />
+              <Text style={styles.permissionText}>
+                All permissions provided
+              </Text>
+            </Box>
+          </View>
+          <View style={styles.buttonView}>
+            <Button onClick={() => {}} text="Stop SDK" />
+          </View>
         </View>
       </View>
     </ScrollView>
