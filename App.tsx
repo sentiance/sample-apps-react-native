@@ -32,7 +32,7 @@ const App = () => {
      * display <Home />
      */
     RNSentiance.getInitState().then(state => {
-      setShowScreen(state !== 'INITIALIZED' ? 'DASHBOARD' : 'HOME');
+      setShowScreen(state === 'INITIALIZED' ? 'DASHBOARD' : 'HOME');
     });
   }, []);
 
