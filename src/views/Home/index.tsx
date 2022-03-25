@@ -4,7 +4,7 @@ import axios from 'axios';
 import BoxButton from '../../components/BoxButton';
 import styles from './styles';
 import RNSentiance from 'react-native-sentiance';
-import configData from '../../../config.json';
+import constants from '../../constants';
 
 /**
  * Initializes the SDK
@@ -13,15 +13,22 @@ import configData from '../../../config.json';
  * SDK credentials and initializes the Sentiance SDK
  */
 
-type appConfigType = {
-  appId: string;
-  appSecret: string;
-  sentianceApiBaseUrl: string;
+const getCredentials = async () => {
+  try {
+    const response = await axios.get(`${constants.BASE_URL}/config`, {
+      headers: {
+        Authorization: 'Basic ZGV2LTE6dGVzdA==',
+      },
+    });
+    return response.data;
+  } catch (err) {
+    console.log('err---', err);
+  }
 };
-
-const handleButtonPress = async (appConfig: appConfigType) => {
-  const {appId, appSecret, sentianceApiBaseUrl: baseUrl} = appConfig;
-
+const handleButtonPress = async () => {
+  const baseUrl = constants.SENTIANCE_BASE_URL;
+  const response = await getCredentials();
+  const {id: appId, secret: appSecret} = response;
   console.log('[sampleapp] pressed');
   try {
     await RNSentiance.createUserExperimental({
@@ -45,7 +52,7 @@ const handleButtonPress = async (appConfig: appConfigType) => {
 
 const linkUser = async (installId: string) => {
   await axios.post(
-    `http://localhost:8000/users/${installId}/link`,
+    `${constants.BASE_URL}/users/${installId}/link`,
     {},
     {
       headers: {Authorization: 'Basic ZGV2LTE6dGVzdA=='},
@@ -62,16 +69,7 @@ const Home = () => {
       </View>
 
       <View style={styles.sdkBoxView}>
-        <BoxButton
-          title="Create User"
-          onPress={() =>
-            handleButtonPress({
-              appId: configData.app.id,
-              appSecret: configData.app.secret,
-              sentianceApiBaseUrl: configData.sentiance_api_base_url,
-            })
-          }
-        />
+        <BoxButton title="Create User" onPress={() => handleButtonPress()} />
       </View>
     </View>
   );
