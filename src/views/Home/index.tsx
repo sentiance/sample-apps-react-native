@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {View, Text} from 'react-native';
 import axios from 'axios';
 import BoxButton from '../../components/BoxButton';
 import styles from './styles';
 import RNSentiance from 'react-native-sentiance';
 import constants from '../../constants';
+import {HomeProps} from './typings';
 
 /**
  * Initializes the SDK
@@ -25,7 +26,7 @@ const getCredentials = async () => {
     console.log('err---', err);
   }
 };
-const handleButtonPress = async () => {
+const handleButtonPress = async (updateScreen: any) => {
   const baseUrl = constants.SENTIANCE_BASE_URL;
   const response = await getCredentials();
   const {id: appId, secret: appSecret} = response;
@@ -39,6 +40,7 @@ const handleButtonPress = async () => {
           await linkUser(data.installId);
           // Ensure you call the "done" after
           done();
+          updateScreen();
         } catch (err) {
           console.log(err);
         }
@@ -60,7 +62,7 @@ const linkUser = async (installId: string) => {
   );
 };
 
-const Home = () => {
+const Home: FC<HomeProps> = ({updateScreen}) => {
   return (
     <View style={styles.contentView}>
       <View style={styles.helloTextView}>
@@ -69,7 +71,10 @@ const Home = () => {
       </View>
 
       <View style={styles.sdkBoxView}>
-        <BoxButton title="Create User" onPress={() => handleButtonPress()} />
+        <BoxButton
+          title="Create User"
+          onPress={() => handleButtonPress(updateScreen)}
+        />
       </View>
     </View>
   );

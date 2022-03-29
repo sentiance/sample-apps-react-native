@@ -40,12 +40,16 @@ const App = () => {
     return null;
   }
 
+  const updateScreen = () => {
+    setShowScreen('DASHBOARD');
+  };
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <Header />
       {showScreen === 'DASHBOARD' && <Dashboard />}
-      {showScreen === 'HOME' && <Home />}
+      {showScreen === 'HOME' && <Home updateScreen={updateScreen} />}
     </SafeAreaView>
   );
 };
