@@ -23,18 +23,18 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-  <string>YOUR TEXT</string>
+  <string>Need Location Permission</string>
   <key>NSLocationAlwaysUsageDescription</key>
-  <string>YOUR TEXT</string>
+  <string>Need Location Permission</string>
   <key>NSLocationTemporaryUsageDescriptionDictionary</key>
   <dict>
-    <key>YOUR-PURPOSE-KEY</key>
-    <string>YOUR TEXT</string>
+    <key>full-accuracy</key>
+    <string>Let me use your precise location</string>
   </dict>
   <key>NSLocationWhenInUseUsageDescription</key>
-  <string>YOUR TEXT</string>
+  <string>Need Location Permission</string>
 		<key>NSMotionUsageDescription</key>
-  <string>YOUR TEXT</string>
+  <string>Need Motion Permission</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
