@@ -74,8 +74,6 @@ PODS:
   - glog (0.3.5)
   - libevent (2.1.12)
   - OpenSSL-Universal (1.1.180)
-  - Permission-LocationAccuracy (3.3.1):
-    - RNPermissions
   - Permission-LocationAlways (3.3.1):
     - RNPermissions
   - Permission-LocationWhenInUse (3.3.1):
@@ -389,7 +387,6 @@ DEPENDENCIES:
   - FlipperKit/SKIOSNetworkPlugin (= 0.99.0)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - OpenSSL-Universal (= 1.1.180)
-  - Permission-LocationAccuracy (from `../node_modules/react-native-permissions/ios/LocationAccuracy`)
   - Permission-LocationAlways (from `../node_modules/react-native-permissions/ios/LocationAlways`)
   - Permission-LocationWhenInUse (from `../node_modules/react-native-permissions/ios/LocationWhenInUse`)
   - Permission-Motion (from `../node_modules/react-native-permissions/ios/Motion`)
@@ -454,8 +451,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/React/FBReactNativeSpec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
-  Permission-LocationAccuracy:
-    :path: "../node_modules/react-native-permissions/ios/LocationAccuracy"
   Permission-LocationAlways:
     :path: "../node_modules/react-native-permissions/ios/LocationAlways"
   Permission-LocationWhenInUse:
@@ -538,7 +533,6 @@ SPEC CHECKSUMS:
   glog: 85ecdd10ee8d8ec362ef519a6a45ff9aa27b2e85
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   OpenSSL-Universal: 1aa4f6a6ee7256b83db99ec1ccdaa80d10f9af9b
-  Permission-LocationAccuracy: 5524aeb0fc08808d0cdb4070056cc215386cd54f
   Permission-LocationAlways: e250497fb714f608bc45c19229d160f4414ac1cb
   Permission-LocationWhenInUse: 50736c907dff5a77d80a3503d3b333831148288b
   Permission-Motion: 78731bd4988898bd9d6baa598b55805c1db610dd
@@ -574,6 +568,6 @@ SPEC CHECKSUMS:
   Yoga: 9b6696970c3289e8dea34b3eda93f23e61fb8121
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 3f707766d44b809f18dc30b8624a8919f913da08
+PODFILE CHECKSUM: ed503a1ece9a32a837628c6a676bdc31b64c3f81
 
 COCOAPODS: 1.11.2
