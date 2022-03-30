@@ -26,11 +26,10 @@ const getCredentials = async () => {
     console.log('err---', err);
   }
 };
-const handleButtonPress = async (updateScreen: any) => {
+const handleCreateUser = async (updateScreen: () => void) => {
   const baseUrl = constants.SENTIANCE_BASE_URL;
   const response = await getCredentials();
   const {id: appId, secret: appSecret} = response;
-  console.log('[sampleapp] pressed');
   try {
     await RNSentiance.createUserExperimental({
       credentials: {appId, appSecret, baseUrl},
@@ -73,7 +72,7 @@ const Home: FC<HomeProps> = ({updateScreen}) => {
       <View style={styles.sdkBoxView}>
         <BoxButton
           title="Create User"
-          onPress={() => handleButtonPress(updateScreen)}
+          onPress={() => handleCreateUser(updateScreen)}
         />
       </View>
     </View>
