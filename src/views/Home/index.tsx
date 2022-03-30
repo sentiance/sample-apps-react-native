@@ -23,10 +23,10 @@ const getCredentials = async () => {
     });
     return response.data;
   } catch (err) {
-    console.log('err---', err);
+    console.log(`Error: ${err}`);
   }
 };
-const handleCreateUser = async (updateScreen: () => void) => {
+const handleCreateUser = async (showDashboardScreen: () => void) => {
   const baseUrl = constants.SENTIANCE_BASE_URL;
   const response = await getCredentials();
   const {id: appId, secret: appSecret} = response;
@@ -39,7 +39,7 @@ const handleCreateUser = async (updateScreen: () => void) => {
           await linkUser(data.installId);
           // Ensure you call the "done" after
           done();
-          updateScreen();
+          showDashboardScreen();
         } catch (err) {
           console.log(err);
         }
@@ -61,7 +61,7 @@ const linkUser = async (installId: string) => {
   );
 };
 
-const Home: FC<HomeProps> = ({updateScreen}) => {
+const Home: FC<HomeProps> = ({showDashboardScreen}) => {
   return (
     <View style={styles.contentView}>
       <View style={styles.helloTextView}>
@@ -72,7 +72,7 @@ const Home: FC<HomeProps> = ({updateScreen}) => {
       <View style={styles.sdkBoxView}>
         <BoxButton
           title="Create User"
-          onPress={() => handleCreateUser(updateScreen)}
+          onPress={() => handleCreateUser(showDashboardScreen)}
         />
       </View>
     </View>

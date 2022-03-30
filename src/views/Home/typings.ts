@@ -1,3 +1,3 @@
 export interface HomeProps {
-  updateScreen: () => void;
+  showDashboardScreen: () => void;
 }

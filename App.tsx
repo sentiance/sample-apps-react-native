@@ -49,7 +49,9 @@ const App = () => {
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <Header />
       {showScreen === 'DASHBOARD' && <Dashboard />}
-      {showScreen === 'HOME' && <Home updateScreen={showDashboardScreen} />}
+      {showScreen === 'HOME' && (
+        <Home showDashboardScreen={showDashboardScreen} />
+      )}
     </SafeAreaView>
   );
 };
