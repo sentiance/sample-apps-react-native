@@ -23,18 +23,18 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-  <string>Need Location Permission</string>
+  <string>This application requires background location permission to display driving behavior</string>
   <key>NSLocationAlwaysUsageDescription</key>
-  <string>Need Location Permission</string>
+  <string>This application requires background location permission to display driving behavior</string>
   <key>NSLocationTemporaryUsageDescriptionDictionary</key>
   <dict>
     <key>full-accuracy</key>
     <string>Let me use your precise location</string>
   </dict>
   <key>NSLocationWhenInUseUsageDescription</key>
-  <string>Need Location Permission</string>
+  <string>This application requires background location permission to display driving behavior</string>
 		<key>NSMotionUsageDescription</key>
-  <string>Need Motion Permission</string>
+  <string>This application requires motion permission to display driving behavior</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

@@ -26,7 +26,7 @@ const permissionCheck = async () => {
       : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
   );
 
-  let backgroundLocation = constants.GRANTED;
+  let backgroundLocation = constants.PERMISSION_GRANTED;
 
   if (platform === 'ANDROID') {
     backgroundLocation = await check(
@@ -42,14 +42,17 @@ const permissionCheck = async () => {
 
   return {
     granted:
-      location === constants.GRANTED &&
-      backgroundLocation === constants.GRANTED &&
-      (motion === constants.GRANTED || motion === constants.UNAVAILABLE),
+      location === constants.PERMISSION_GRANTED &&
+      backgroundLocation === constants.PERMISSION_GRANTED &&
+      (motion === constants.PERMISSION_GRANTED ||
+        motion === constants.PERMISSION_UNAVAILABLE),
     permissions: {
       location:
-        location === constants.GRANTED &&
-        backgroundLocation === constants.GRANTED,
-      motion: motion === constants.GRANTED || motion === constants.UNAVAILABLE,
+        location === constants.PERMISSION_GRANTED &&
+        backgroundLocation === constants.PERMISSION_GRANTED,
+      motion:
+        motion === constants.PERMISSION_GRANTED ||
+        motion === constants.PERMISSION_UNAVAILABLE,
     },
   };
 };
