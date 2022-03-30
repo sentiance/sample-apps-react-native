@@ -32,7 +32,7 @@ const App = () => {
      * display <Home />
      */
     RNSentiance.getInitState().then(state => {
-      setShowScreen(state !== 'INITIALIZED' ? 'DASHBOARD' : 'HOME');
+      setShowScreen(state === 'INITIALIZED' ? 'DASHBOARD' : 'HOME');
     });
   }, []);
 
@@ -40,12 +40,18 @@ const App = () => {
     return null;
   }
 
+  const showDashboardScreen = () => {
+    setShowScreen('DASHBOARD');
+  };
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <Header />
       {showScreen === 'DASHBOARD' && <Dashboard />}
-      {showScreen === 'HOME' && <Home />}
+      {showScreen === 'HOME' && (
+        <Home showDashboardScreen={showDashboardScreen} />
+      )}
     </SafeAreaView>
   );
 };

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {View, Text} from 'react-native';
 import axios from 'axios';
-import contants from '../../constants';
 import BoxButton from '../../components/BoxButton';
 import styles from './styles';
+import RNSentiance from 'react-native-sentiance';
+import constants from '../../constants';
+import {HomeProps} from './typings';
 
 /**
  * Initializes the SDK
@@ -11,19 +13,55 @@ import styles from './styles';
  * The below method queries the sample "api" to fetch the
  * SDK credentials and initializes the Sentiance SDK
  */
-const handleButtonPress = async () => {
-  console.log('[sampleapp] pressed');
 
-  const response = await axios.get(`${contants.BASE_URL}/config`, {
-    headers: {
-      Authorization: 'Basic ZGV2LTE6dGVzdA==',
-    },
-  });
-
-  console.log(response.data);
+const getCredentials = async () => {
+  try {
+    const response = await axios.get(`${constants.BASE_URL}/config`, {
+      headers: {
+        Authorization: 'Basic ZGV2LTE6dGVzdA==',
+      },
+    });
+    return response.data;
+  } catch (err) {
+    console.log(`Error: ${err}`);
+  }
+};
+const handleCreateUser = async (showDashboardScreen: () => void) => {
+  const baseUrl = constants.SENTIANCE_BASE_URL;
+  const response = await getCredentials();
+  const {id: appId, secret: appSecret} = response;
+  try {
+    await RNSentiance.createUserExperimental({
+      credentials: {appId, appSecret, baseUrl},
+      linker: async (data, done) => {
+        try {
+          // request your backend to perform user linking
+          await linkUser(data.installId);
+          // Ensure you call the "done" after
+          done();
+          showDashboardScreen();
+        } catch (err) {
+          console.log(err);
+        }
+      },
+    });
+    await RNSentiance.start();
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-const Home = () => {
+const linkUser = async (installId: string) => {
+  await axios.post(
+    `${constants.BASE_URL}/users/${installId}/link`,
+    {},
+    {
+      headers: {Authorization: 'Basic ZGV2LTE6dGVzdA=='},
+    },
+  );
+};
+
+const Home: FC<HomeProps> = ({showDashboardScreen}) => {
   return (
     <View style={styles.contentView}>
       <View style={styles.helloTextView}>
@@ -32,7 +70,10 @@ const Home = () => {
       </View>
 
       <View style={styles.sdkBoxView}>
-        <BoxButton title="Create User" onPress={() => handleButtonPress()} />
+        <BoxButton
+          title="Create User"
+          onPress={() => handleCreateUser(showDashboardScreen)}
+        />
       </View>
     </View>
   );
