@@ -25,6 +25,12 @@ const styles = StyleSheet.create({
     fontSize: size.sm,
     color: colors.green,
   },
+  permissionTextError: {
+    textAlign: 'center',
+    fontStyle: 'italic',
+    fontSize: size.sm,
+    color: colors.red,
+  },
   buttonView: {
     marginBottom: 40,
   },

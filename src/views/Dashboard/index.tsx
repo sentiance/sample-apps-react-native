@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import styles from './styles';
 import CollectingData from '../../components/CollectingData';
@@ -8,13 +8,21 @@ import Badge from '../../components/Badge';
 import TextView from '../../components/TextView';
 import Button from '../../components/Button';
 import RNSentiance from 'react-native-sentiance';
+import {permissionCheck} from '../../helpers/permissions';
 
 const Dashboard = () => {
   const [initState, setInitState] = useState('');
   const [initStatus, setInitStatus] = useState({});
   const [userId, setUserId] = useState('');
+  const [locationStatus, setLocationStatus] = useState(false);
+  const [motionStatus, setMotionStatus] = useState(false);
 
   useEffect(() => {
+    permissionCheck().then(res => {
+      setLocationStatus(res.permissions.location);
+      setMotionStatus(res.permissions.motion);
+    });
+
     RNSentiance.getInitState().then(state => {
       setInitState(state);
     });
@@ -59,13 +67,25 @@ const Dashboard = () => {
                 Permissions status
               </Text>
               <View style={styles.divider} />
-              <TextView title="Location" status="success" />
+              <TextView
+                title="Location"
+                status={locationStatus ? 'success' : 'error'}
+              />
               <View style={styles.divider} />
-              <TextView title="Motion" status="success" />
+              <TextView
+                title="Motion"
+                status={motionStatus ? 'success' : 'error'}
+              />
               <View style={styles.divider} />
-              <Text style={styles.permissionText}>
-                All permissions provided
-              </Text>
+              {motionStatus && locationStatus ? (
+                <Text style={styles.permissionText}>
+                  All permissions provided
+                </Text>
+              ) : (
+                <Text style={styles.permissionTextError}>
+                  App will not work optimaly
+                </Text>
+              )}
             </Box>
           </View>
           <View style={styles.buttonView}>
