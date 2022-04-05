@@ -1,7 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.sampleappsreactnative">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.sampleappsreactnative"
+    tools:ignore="AllowBackup">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
 
     <application
       android:name=".MainApplication"
