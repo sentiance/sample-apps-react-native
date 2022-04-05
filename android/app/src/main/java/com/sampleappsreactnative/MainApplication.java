@@ -3,7 +3,6 @@ package com.sampleappsreactnative;
 import android.app.Application;
 import android.content.Context;
 
-import com.facebook.react.BuildConfig;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
@@ -50,7 +49,7 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
       SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
-    RNSentianceHelper.getInstance(getApplicationContext()).initialize();
+    RNSentianceHelper.getInstance(getApplicationContext()).initialize(null);
   }
 
   /**
