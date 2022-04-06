@@ -26,33 +26,6 @@ const getCredentials = async () => {
     console.log(`Error: ${err}`);
   }
 };
-const handleCreateUser = async (showDashboardScreen: () => void) => {
-  const baseUrl = constants.SENTIANCE_BASE_URL;
-  const response = await getCredentials();
-  const {id: appId, secret: appSecret} = response;
-  console.log({response});
-  try {
-    await RNSentiance.createUserExperimental({
-      credentials: {appId, appSecret, baseUrl},
-      linker: async (data, done) => {
-        // request your backend to perform user linking
-        await linkUser(data.installId);
-        // Ensure you call the "done" after
-        console.log('before done', {data});
-        done();
-        console.log('after done', {data});
-      },
-    });
-  } catch (error) {
-    console.log(error);
-  }
-  await RNSentiance.start();
-  console.log(
-    'after awit ',
-    await RNSentiance.getSdkStatus(),
-    await RNSentiance.getInitState(),
-  );
-};
 
 const linkUser = async (installId: string) => {
   await axios.post(
@@ -65,6 +38,39 @@ const linkUser = async (installId: string) => {
 };
 
 const Home: FC<HomeProps> = ({showDashboardScreen}) => {
+  const handleCreateUser = async () => {
+    const baseUrl = constants.SENTIANCE_BASE_URL;
+    const response = await getCredentials();
+    const {id: appId, secret: appSecret} = response;
+    try {
+      console.log('before create');
+      await RNSentiance.createUserExperimental({
+        credentials: {appId, appSecret, baseUrl},
+        linker: async (data, done) => {
+          try {
+            // request your backend to perform user linking
+            await linkUser(data.installId);
+            console.log('before done', data);
+            // Ensure you call the "done" after
+            done();
+            console.log('after done');
+          } catch (err) {
+            console.log(err);
+          }
+        },
+      });
+      console.log('before start');
+      await RNSentiance.start();
+      showDashboardScreen();
+      console.log(
+        'after start',
+        await RNSentiance.getInitState(),
+        await RNSentiance.getSdkStatus(),
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <View style={styles.contentView}>
       <View style={styles.helloTextView}>
@@ -73,10 +79,7 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
       </View>
 
       <View style={styles.sdkBoxView}>
-        <BoxButton
-          title="Create User"
-          onPress={() => handleCreateUser(showDashboardScreen)}
-        />
+        <BoxButton title="Create User" onPress={() => handleCreateUser()} />
       </View>
     </View>
   );
