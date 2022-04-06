@@ -30,25 +30,28 @@ const handleCreateUser = async (showDashboardScreen: () => void) => {
   const baseUrl = constants.SENTIANCE_BASE_URL;
   const response = await getCredentials();
   const {id: appId, secret: appSecret} = response;
+  console.log({response});
   try {
     await RNSentiance.createUserExperimental({
       credentials: {appId, appSecret, baseUrl},
       linker: async (data, done) => {
-        try {
-          // request your backend to perform user linking
-          await linkUser(data.installId);
-          // Ensure you call the "done" after
-          done();
-          showDashboardScreen();
-        } catch (err) {
-          console.log(err);
-        }
+        // request your backend to perform user linking
+        await linkUser(data.installId);
+        // Ensure you call the "done" after
+        console.log('before done', {data});
+        done();
+        console.log('after done', {data});
       },
     });
-    await RNSentiance.start();
   } catch (error) {
     console.log(error);
   }
+  await RNSentiance.start();
+  console.log(
+    'after awit ',
+    await RNSentiance.getSdkStatus(),
+    await RNSentiance.getInitState(),
+  );
 };
 
 const linkUser = async (installId: string) => {
