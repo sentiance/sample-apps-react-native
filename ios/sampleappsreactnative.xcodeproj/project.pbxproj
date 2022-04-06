@@ -12,6 +12,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1C590466959C54A6D4B65581 /* libPods-sampleappsreactnative-sampleappsreactnativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0CC5174821B9EC19A319493 /* libPods-sampleappsreactnative-sampleappsreactnativeTests.a */; };
+		426DF97A27FE083600149BBF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 426DF97927FE083600149BBF /* Settings.bundle */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		F16CCD60704F3ED75E8B5FBD /* libPods-sampleappsreactnative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C80278E9D5B2776B6809B0 /* libPods-sampleappsreactnative.a */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = sampleappsreactnative/main.m; sourceTree = "<group>"; };
 		31F2B20BC209BD98829CE466 /* Pods-sampleappsreactnative-sampleappsreactnativeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sampleappsreactnative-sampleappsreactnativeTests.debug.xcconfig"; path = "Target Support Files/Pods-sampleappsreactnative-sampleappsreactnativeTests/Pods-sampleappsreactnative-sampleappsreactnativeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4267627D27CD24F30063819A /* sampleappsreactnative.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = sampleappsreactnative.entitlements; path = sampleappsreactnative/sampleappsreactnative.entitlements; sourceTree = "<group>"; };
+		426DF97927FE083600149BBF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = sampleappsreactnative/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B2C80278E9D5B2776B6809B0 /* libPods-sampleappsreactnative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sampleappsreactnative.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB9CCBA5438FB6827BA23E02 /* Pods-sampleappsreactnative.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sampleappsreactnative.debug.xcconfig"; path = "Target Support Files/Pods-sampleappsreactnative/Pods-sampleappsreactnative.debug.xcconfig"; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				426DF97927FE083600149BBF /* Settings.bundle */,
 				13B07FAE1A68108700A75B9A /* sampleappsreactnative */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* sampleappsreactnativeTests */,
@@ -245,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				426DF97A27FE083600149BBF /* Settings.bundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
