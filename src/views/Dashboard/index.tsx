@@ -16,7 +16,7 @@ import {
 
 const Dashboard = () => {
   const [initState, setInitState] = useState('');
-  const [initStatus, setInitStatus] = useState('');
+  const [startStatus, setStartStatus] = useState('');
   const [userId, setUserId] = useState('');
   const [responsePermission, setResponsePermission] = useState<any>({});
 
@@ -30,7 +30,7 @@ const Dashboard = () => {
       setInitState(state);
     });
     RNSentiance.getSdkStatus().then(status => {
-      setInitStatus(status.startStatus);
+      setStartStatus(status.startStatus);
     });
     RNSentiance.getUserId().then(id => {
       setUserId(id);
@@ -43,7 +43,7 @@ const Dashboard = () => {
         <View style={styles.boxView}>
           <CollectingData
             status={
-              initState === 'INITIALIZED' && initStatus === 'STARTED'
+              initState === 'INITIALIZED' && startStatus === 'STARTED'
                 ? 'success'
                 : 'error'
             }
@@ -51,7 +51,7 @@ const Dashboard = () => {
           <Box>
             <Badge status={initState} title="Init status" />
             <View style={styles.divider} />
-            <Badge status={initStatus} title="SDK status" />
+            <Badge status={startStatus} title="SDK status" />
           </Box>
           <Box>
             <InfoText title="User ID" text={userId} isCopyable={true} />
