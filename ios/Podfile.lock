@@ -349,6 +349,8 @@ PODS:
     - React-perflogger (= 0.67.2)
   - RNCClipboard (1.5.1):
     - React-Core
+  - RNDeviceInfo (8.7.0):
+    - React-Core
   - RNPermissions (3.3.1):
     - React-Core
   - RNSentiance (4.4.1):
@@ -422,6 +424,7 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCClipboard (from `../node_modules/@react-native-community/clipboard`)"
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNSentiance (from `../node_modules/react-native-sentiance/ios`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -514,6 +517,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNCClipboard:
     :path: "../node_modules/@react-native-community/clipboard"
+  RNDeviceInfo:
+    :path: "../node_modules/react-native-device-info"
   RNPermissions:
     :path: "../node_modules/react-native-permissions"
   RNSentiance:
@@ -569,6 +574,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 2450b43df7ffe8e805a0b3dcb2abd4282f1f1836
   ReactCommon: d98c6c96b567f9b3a15f9fd4cc302c1eda8e3cf2
   RNCClipboard: 5e299c6df8e0c98f3d7416b86ae563d3a9f768a3
+  RNDeviceInfo: a5bd1c810c609f7b8dd87029fe4b2112ae36136d
   RNPermissions: 7ad8d93b004e6bc85c89e27a102afcde90e07efa
   RNSentiance: b18f128914b2b5e9d88b21b561539d9399e4d093
   SENTSDK: 38ba043dc676ccf10e649b50ac3f2306dee5285b
