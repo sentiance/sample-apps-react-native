@@ -5,7 +5,6 @@ import {
   PERMISSIONS,
   RESULTS,
   LocationAccuracy,
-  // check,
   request,
 } from 'react-native-permissions';
 import DeviceInfo from 'react-native-device-info';
@@ -17,6 +16,12 @@ const {
   },
   IOS: {LOCATION_WHEN_IN_USE, LOCATION_ALWAYS, MOTION},
 } = PERMISSIONS;
+
+interface PermissionProps {
+  'ios.permission.LOCATION_ALWAYS': string;
+  'ios.permission.LOCATION_WHEN_IN_USE': string;
+  'ios.permission.MOTION': string;
+}
 
 export const checkPermissions = async () => {
   let results;
@@ -49,7 +54,7 @@ export const checkPermissions = async () => {
   return results;
 };
 
-export const getLocationStatus = (responsePermission: any) => {
+export const getLocationStatus = (responsePermission: PermissionProps) => {
   if (Platform.OS === 'ios') {
     if (
       (responsePermission[LOCATION_ALWAYS] === 'denied' ||
