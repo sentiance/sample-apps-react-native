@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import React, {useEffect, useState, useRef} from 'react';
+import {View, Text, ScrollView, AppState, DevSettings} from 'react-native';
 import styles from './styles';
 import CollectingData from '../../components/CollectingData';
 import Box from '../../components/Box';
@@ -19,8 +19,24 @@ const Dashboard = () => {
   const [startStatus, setStartStatus] = useState('');
   const [userId, setUserId] = useState('');
   const [responsePermission, setResponsePermission] = useState<any>({});
+  const appState = useRef(AppState.currentState);
 
   useEffect(() => {
+    const subscription = AppState.addEventListener(
+      'change',
+
+      nextAppState => {
+        if (
+          appState.current.match(/inactive|background/) &&
+          nextAppState === 'active'
+        ) {
+          DevSettings.reload();
+        }
+
+        appState.current = nextAppState;
+      },
+    );
+
     async function checkAllPermission() {
       let response = await checkPermissions();
       setResponsePermission(response);
@@ -35,6 +51,9 @@ const Dashboard = () => {
     RNSentiance.getUserId().then(id => {
       setUserId(id);
     });
+    return () => {
+      subscription.remove();
+    };
   }, []);
 
   return (
