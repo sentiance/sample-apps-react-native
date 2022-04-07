@@ -132,7 +132,12 @@ const Dashboard = () => {
             </Box>
           </View>
           <View style={styles.buttonView}>
-            <Button onClick={() => {}} text="Stop SDK" />
+            <Button
+              onClick={async () => {
+                await RNSentiance.resetExperimental();
+              }}
+              text="Stop SDK"
+            />
           </View>
         </View>
       </View>

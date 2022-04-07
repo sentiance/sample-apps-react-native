@@ -62,7 +62,11 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
       console.log('before start');
       await RNSentiance.start();
       showDashboardScreen();
-      console.log('after start');
+      console.log(
+        'after start',
+        await RNSentiance.getInitState(),
+        await RNSentiance.getSdkStatus(),
+      );
     } catch (error) {
       console.log(error);
     }
