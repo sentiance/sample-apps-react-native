@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {View, Text, ScrollView, AppState} from 'react-native';
+import {View, Text, ScrollView, AppState, DevSettings} from 'react-native';
 import styles from './styles';
 import CollectingData from '../../components/CollectingData';
 import Box from '../../components/Box';
@@ -13,7 +13,6 @@ import {
   getLocationStatus,
   getMotionStatus,
 } from '../../helpers/permissions';
-import RNRestart from 'react-native-restart';
 
 const Dashboard = () => {
   const [initState, setInitState] = useState('');
@@ -31,7 +30,7 @@ const Dashboard = () => {
           appState.current.match(/inactive|background/) &&
           nextAppState === 'active'
         ) {
-          RNRestart.Restart();
+          DevSettings.reload();
         }
 
         appState.current = nextAppState;
