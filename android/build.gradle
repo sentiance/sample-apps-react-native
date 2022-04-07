@@ -40,7 +40,7 @@ allprojects {
         }
         google()
         maven { url 'https://www.jitpack.io' }
-        maven { url "http://repository.sentiance.com"
+        maven { url "https://repository.sentiance.com"
             allowInsecureProtocol= true}
     }
 }
