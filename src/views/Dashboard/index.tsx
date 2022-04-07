@@ -45,7 +45,6 @@ const Dashboard = () => {
     checkAllPermission();
     RNSentiance.getInitState().then(state => {
       setInitState(state);
-      // RNRestart.Restart();
     });
     RNSentiance.getSdkStatus().then(status => {
       setStartStatus(status.startStatus);
@@ -56,7 +55,6 @@ const Dashboard = () => {
     return () => {
       subscription.remove();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
