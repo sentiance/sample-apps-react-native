@@ -26,30 +26,6 @@ const getCredentials = async () => {
     console.log(`Error: ${err}`);
   }
 };
-const handleCreateUser = async (showDashboardScreen: () => void) => {
-  const baseUrl = constants.SENTIANCE_BASE_URL;
-  const response = await getCredentials();
-  const {id: appId, secret: appSecret} = response;
-  try {
-    await RNSentiance.createUserExperimental({
-      credentials: {appId, appSecret, baseUrl},
-      linker: async (data, done) => {
-        try {
-          // request your backend to perform user linking
-          await linkUser(data.installId);
-          // Ensure you call the "done" after
-          done();
-          showDashboardScreen();
-        } catch (err) {
-          console.log(err);
-        }
-      },
-    });
-    await RNSentiance.start();
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 const linkUser = async (installId: string) => {
   await axios.post(
@@ -62,6 +38,34 @@ const linkUser = async (installId: string) => {
 };
 
 const Home: FC<HomeProps> = ({showDashboardScreen}) => {
+  const handleCreateUser = async () => {
+    const baseUrl = constants.SENTIANCE_BASE_URL;
+    const response = await getCredentials();
+    const {id: appId, secret: appSecret} = response;
+    try {
+      try {
+        await RNSentiance.createUserExperimental({
+          credentials: {appId, appSecret, baseUrl},
+          linker: async (data, done) => {
+            try {
+              // request your backend to perform user linking
+              await linkUser(data.installId);
+              // Ensure you call the "done" after
+              done();
+            } catch (err) {
+              console.log(err);
+            }
+          },
+        });
+      } catch (err) {
+        console.log(err);
+      }
+      await RNSentiance.start();
+      showDashboardScreen();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <View style={styles.contentView}>
       <View style={styles.helloTextView}>
@@ -70,10 +74,7 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
       </View>
 
       <View style={styles.sdkBoxView}>
-        <BoxButton
-          title="Create User"
-          onPress={() => handleCreateUser(showDashboardScreen)}
-        />
+        <BoxButton title="Create User" onPress={() => handleCreateUser()} />
       </View>
     </View>
   );

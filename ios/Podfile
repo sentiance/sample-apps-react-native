@@ -33,5 +33,6 @@ target 'sampleappsreactnative' do
   pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways"
   pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
   pod 'Permission-Motion', :path => "#{permissions_path}/Motion"
+  pod 'Permission-LocationAccuracy', :path => "#{permissions_path}/LocationAccuracy"
 
 end

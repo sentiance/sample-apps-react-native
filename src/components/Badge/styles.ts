@@ -56,5 +56,28 @@ const styles = StyleSheet.create({
     backgroundColor: colors.red,
     marginEnd: spacing.xs,
   },
+
+  dotPendingView: {
+    borderRadius: spacing.xs,
+    height: spacing.xs,
+    width: spacing.xs,
+    backgroundColor: colors.orange,
+    marginEnd: spacing.xs,
+  },
+
+  statusPendingText: {
+    color: colors.orange,
+    fontSize: 20,
+  },
+
+  statusPendingView: {
+    padding: spacing.xs,
+    backgroundColor: colors.lightOrange,
+    alignSelf: 'baseline',
+    borderRadius: 4,
+    marginTop: spacing.xs,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 });
 export default styles;

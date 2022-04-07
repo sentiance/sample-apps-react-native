@@ -7,12 +7,12 @@ import {TextViewProps} from './typings';
 
 const TextView: FC<TextViewProps> = ({title, status}): JSX.Element => {
   const statusText = () => {
-    if (status === 'error') {
-      return <Text style={styles.statusErrorText}>NEVER</Text>;
-    } else if (status === 'success') {
-      return <Text style={styles.statusSuccessText}>ALWAYS</Text>;
+    if (status === 'NEVER') {
+      return <Text style={styles.statusErrorText}>{status}</Text>;
+    } else if (status === 'ALWAYS') {
+      return <Text style={styles.statusSuccessText}>{status}</Text>;
     } else {
-      return <Text style={styles.statusProgressText}>WHILE IN USE</Text>;
+      return <Text style={styles.statusProgressText}>{status}</Text>;
     }
   };
   return (

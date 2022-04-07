@@ -8,58 +8,53 @@ import Badge from '../../components/Badge';
 import TextView from '../../components/TextView';
 import Button from '../../components/Button';
 import RNSentiance from 'react-native-sentiance';
-import {permissionCheck} from '../../helpers/permissions';
+import {
+  checkPermissions,
+  getLocationStatus,
+  getMotionStatus,
+} from '../../helpers/permissions';
 
 const Dashboard = () => {
   const [initState, setInitState] = useState('');
-  const [initStatus, setInitStatus] = useState({});
+  const [startStatus, setStartStatus] = useState('');
   const [userId, setUserId] = useState('');
-  const [locationStatus, setLocationStatus] = useState(false);
-  const [motionStatus, setMotionStatus] = useState(false);
+  const [responsePermission, setResponsePermission] = useState<any>({});
 
   useEffect(() => {
-    permissionCheck().then(res => {
-      setLocationStatus(res.permissions.location);
-      setMotionStatus(res.permissions.motion);
-    });
-
+    async function checkAllPermission() {
+      let response = await checkPermissions();
+      setResponsePermission(response);
+    }
+    checkAllPermission();
     RNSentiance.getInitState().then(state => {
       setInitState(state);
     });
     RNSentiance.getSdkStatus().then(status => {
-      setInitStatus(status.startStatus);
+      setStartStatus(status.startStatus);
     });
     RNSentiance.getUserId().then(id => {
       setUserId(id);
     });
   }, []);
+
   return (
     <ScrollView>
       <View style={styles.contentView}>
         <View style={styles.boxView}>
-          <CollectingData status="success" />
+          <CollectingData
+            status={
+              initState === 'INITIALIZED' && startStatus === 'STARTED'
+                ? 'success'
+                : 'error'
+            }
+          />
           <Box>
-            <Badge
-              statusText={
-                initState === 'INITIALIZED' ? 'Initialized' : 'Not-Initialized'
-              }
-              status={initState === 'INITIALIZED' ? 'success' : 'error'}
-              title="Init status"
-            />
+            <Badge status={initState} title="Init status" />
             <View style={styles.divider} />
-            <Badge
-              statusText={initStatus === 'STARTED' ? 'Started' : 'Not-Started'}
-              status={initStatus === 'STARTED' ? 'success' : 'error'}
-              title="SDK status"
-            />
+            <Badge status={startStatus} title="SDK status" />
           </Box>
           <Box>
             <InfoText title="User ID" text={userId} isCopyable={true} />
-            <InfoText title="Install ID" text="6439jkbadk24928000ka001" />
-            <InfoText
-              title="External user ID (user linking)"
-              text="6439jkbadk24928000ka001"
-            />
           </Box>
           <View style={{position: 'relative'}}>
             <Box>
@@ -69,15 +64,16 @@ const Dashboard = () => {
               <View style={styles.divider} />
               <TextView
                 title="Location"
-                status={locationStatus ? 'success' : 'error'}
+                status={getLocationStatus(responsePermission)}
               />
               <View style={styles.divider} />
               <TextView
                 title="Motion"
-                status={motionStatus ? 'success' : 'error'}
+                status={getMotionStatus(responsePermission)}
               />
               <View style={styles.divider} />
-              {motionStatus && locationStatus ? (
+              {getLocationStatus(responsePermission) === 'ALWAYS' &&
+              getMotionStatus(responsePermission) === 'ALWAYS' ? (
                 <Text style={styles.permissionText}>
                   All permissions provided
                 </Text>
@@ -89,7 +85,12 @@ const Dashboard = () => {
             </Box>
           </View>
           <View style={styles.buttonView}>
-            <Button onClick={() => {}} text="Stop SDK" />
+            <Button
+              onClick={async () => {
+                await RNSentiance.resetExperimental();
+              }}
+              text="Stop SDK"
+            />
           </View>
         </View>
       </View>
