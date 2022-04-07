@@ -18,6 +18,7 @@
         "react-native-config": "^1.4.5",
         "react-native-device-info": "^8.7.0",
         "react-native-permissions": "^3.3.1",
+        "react-native-restart": "0.0.24",
         "react-native-sentiance": "^4.8.0"
     },
     "devDependencies": {

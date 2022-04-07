@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import React, {useEffect, useState, useRef} from 'react';
+import {View, Text, ScrollView, AppState} from 'react-native';
 import styles from './styles';
 import CollectingData from '../../components/CollectingData';
 import Box from '../../components/Box';
@@ -13,14 +13,31 @@ import {
   getLocationStatus,
   getMotionStatus,
 } from '../../helpers/permissions';
+import RNRestart from 'react-native-restart';
 
 const Dashboard = () => {
   const [initState, setInitState] = useState('');
   const [startStatus, setStartStatus] = useState('');
   const [userId, setUserId] = useState('');
   const [responsePermission, setResponsePermission] = useState<any>({});
+  const appState = useRef(AppState.currentState);
 
   useEffect(() => {
+    const subscription = AppState.addEventListener(
+      'change',
+
+      nextAppState => {
+        if (
+          appState.current.match(/inactive|background/) &&
+          nextAppState === 'active'
+        ) {
+          RNRestart.Restart();
+        }
+
+        appState.current = nextAppState;
+      },
+    );
+
     async function checkAllPermission() {
       let response = await checkPermissions();
       setResponsePermission(response);
@@ -28,6 +45,7 @@ const Dashboard = () => {
     checkAllPermission();
     RNSentiance.getInitState().then(state => {
       setInitState(state);
+      // RNRestart.Restart();
     });
     RNSentiance.getSdkStatus().then(status => {
       setStartStatus(status.startStatus);
@@ -35,6 +53,10 @@ const Dashboard = () => {
     RNSentiance.getUserId().then(id => {
       setUserId(id);
     });
+    return () => {
+      subscription.remove();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
