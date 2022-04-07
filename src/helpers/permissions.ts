@@ -49,49 +49,39 @@ export const checkPermissions = async () => {
   return results;
 };
 
-// type PermissionStatus =
-//   | 'denied'
-//   | 'unavailable'
-//   | 'granted'
-//   | 'blocked'
-//   | 'limited';
+export const getLocationStatus = (responsePermission: any) => {
+  if (Platform.OS === 'ios') {
+    if (
+      (responsePermission[LOCATION_ALWAYS] === 'denied' ||
+        responsePermission[LOCATION_ALWAYS] === 'blocked') &&
+      responsePermission[LOCATION_WHEN_IN_USE] === 'granted'
+    ) {
+      return 'WHILE IN USE';
+    } else if (
+      responsePermission[LOCATION_ALWAYS] === 'granted' &&
+      (responsePermission[LOCATION_WHEN_IN_USE] === 'blocked' ||
+        responsePermission[LOCATION_WHEN_IN_USE] === 'granted')
+    ) {
+      return 'ALWAYS';
+    } else {
+      return 'NEVER';
+    }
+  }
+};
 
-// export const permissionCheck = async () => {
-//   const platform = Platform.OS === 'ios' ? 'IOS' : 'ANDROID';
-//   const version = DeviceInfo.getSystemVersion();
-//   const location = await check(
-//     platform === 'IOS'
-//       ? PERMISSIONS.IOS.LOCATION_ALWAYS
-//       : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
-//   );
-//   console.log('**********location', location);
-
-//   let backgroundLocation: PermissionStatus = RESULTS.GRANTED;
-
-//   if (parseInt(version) >= 10 && platform === 'ANDROID') {
-//     backgroundLocation = await check(
-//       PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
-//     );
-//   }
-
-//   const motion = await check(
-//     platform === 'IOS'
-//       ? PERMISSIONS.IOS.MOTION
-//       : PERMISSIONS.ANDROID.ACTIVITY_RECOGNITION,
-//   );
-
-//   return {
-//     granted:
-//       location === RESULTS.GRANTED &&
-//       backgroundLocation === RESULTS.GRANTED &&
-//       (motion === RESULTS.GRANTED || motion === RESULTS.UNAVAILABLE),
-//     permissions: {
-//       location:
-//         location === RESULTS.GRANTED && backgroundLocation === RESULTS.GRANTED,
-//       motion: motion === RESULTS.GRANTED || motion === RESULTS.UNAVAILABLE,
-//     },
-//   };
-// };
+export const getMotionStatus = (responsePermission: any) => {
+  if (Platform.OS === 'ios') {
+    if (responsePermission[MOTION] === 'unavailable') {
+      return 'UNAVAILABLE';
+    } else if (responsePermission[MOTION] === 'granted') {
+      return 'ALWAYS';
+    } else if (responsePermission[MOTION] === 'denied') {
+      return 'DENIED';
+    } else {
+      return 'NEVER';
+    }
+  }
+};
 
 export const permissionRequest = async () => {
   const version = DeviceInfo.getSystemVersion();
