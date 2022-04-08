@@ -17,6 +17,7 @@ import Header from './src/components/Header';
 import Dashboard from './src/views/Dashboard';
 import Home from './src/views/Home';
 import {permissionRequest} from './src/helpers/permissions';
+
 const App = () => {
   const [showScreen, setShowScreen] = useState<boolean | string>(false);
   const isDarkMode = useColorScheme() === 'dark';
@@ -43,17 +44,19 @@ const App = () => {
     return null;
   }
 
-  const showDashboardScreen = () => {
-    setShowScreen('DASHBOARD');
+  const updateScreen = (screen: string) => {
+    setShowScreen(screen);
   };
 
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <Header />
-      {showScreen === 'DASHBOARD' && <Dashboard />}
+      {showScreen === 'DASHBOARD' && (
+        <Dashboard showHomeScreen={() => updateScreen('HOME')} />
+      )}
       {showScreen === 'HOME' && (
-        <Home showDashboardScreen={showDashboardScreen} />
+        <Home showDashboardScreen={() => updateScreen('DASHBOARD')} />
       )}
     </SafeAreaView>
   );
