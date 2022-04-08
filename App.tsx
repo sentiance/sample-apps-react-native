@@ -16,7 +16,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Header from './src/components/Header';
 import Dashboard from './src/views/Dashboard';
 import Home from './src/views/Home';
-import {permissionRequest} from './src/helpers/permissions';
+import {permissionMotionRequest} from './src/helpers/permissions';
 const App = () => {
   const [showScreen, setShowScreen] = useState<boolean | string>(false);
   const isDarkMode = useColorScheme() === 'dark';
@@ -26,7 +26,7 @@ const App = () => {
 
   useEffect(() => {
     // permission request
-    permissionRequest();
+    permissionMotionRequest();
 
     /**
      * Determines which screen is to be displayed.

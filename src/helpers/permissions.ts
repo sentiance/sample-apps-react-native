@@ -22,7 +22,7 @@ interface PermissionProps {
   'ios.permission.LOCATION_WHEN_IN_USE': string;
   'ios.permission.MOTION': string;
 }
-
+const version = DeviceInfo.getSystemVersion();
 export const checkPermissions = async () => {
   let results;
   if (Platform.OS === 'ios') {
@@ -88,9 +88,18 @@ export const getMotionStatus = (responsePermission: any) => {
   }
 };
 
-export const permissionRequest = async () => {
-  const version = DeviceInfo.getSystemVersion();
+// request permission for motion
+export const permissionMotionRequest = async () => {
+  if (Platform.OS === 'ios') {
+    await request(PERMISSIONS.IOS.MOTION);
+  } else {
+    // ANDROID
+    await request(PERMISSIONS.ANDROID.ACTIVITY_RECOGNITION);
+  }
+};
 
+// request permission for location
+export const permissionLocationRequest = async () => {
   if (Platform.OS === 'ios') {
     await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
     await request(PERMISSIONS.IOS.LOCATION_ALWAYS);
