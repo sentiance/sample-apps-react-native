@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState, useRef, FC} from 'react';
 import {View, Text, ScrollView, AppState, DevSettings} from 'react-native';
 import styles from './styles';
 import CollectingData from '../../components/CollectingData';
@@ -13,8 +13,9 @@ import {
   getLocationStatus,
   getMotionStatus,
 } from '../../helpers/permissions';
+import {DashboardProps} from './typings';
 
-const Dashboard = () => {
+const Dashboard: FC<DashboardProps> = ({showHomeScreen}) => {
   const [initState, setInitState] = useState('');
   const [startStatus, setStartStatus] = useState('');
   const [userId, setUserId] = useState('');
@@ -107,6 +108,7 @@ const Dashboard = () => {
             <Button
               onClick={async () => {
                 await RNSentiance.resetExperimental();
+                showHomeScreen();
               }}
               text="Stop SDK"
             />
