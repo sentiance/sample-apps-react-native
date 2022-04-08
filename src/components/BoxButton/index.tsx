@@ -11,7 +11,9 @@ const BoxButton: FC<BoxButtonProps> = ({onPress, title}): JSX.Element => {
   return (
     <Box>
       <View style={styles.boxView}>
-        <Image style={styles.imageView} source={attach} />
+        <TouchableOpacity onPress={onPress}>
+          <Image style={styles.imageView} source={attach} />
+        </TouchableOpacity>
         <TouchableOpacity onPress={onPress}>
           <View style={styles.bottomView}>
             <Text>{title}</Text>
