@@ -4,8 +4,10 @@ import size from '../../constants/size';
 
 const styles = StyleSheet.create({
   sdkBoxView: {
-    marginBottom: 80,
     alignContent: 'center',
+    position: 'absolute',
+    bottom: 100,
+    width: '100%',
   },
   contentView: {
     height: '100%',
