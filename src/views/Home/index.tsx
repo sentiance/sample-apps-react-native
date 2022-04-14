@@ -61,8 +61,12 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
     } catch (err) {
       console.log(err);
     }
-    await RNSentiance.start();
-    showDashboardScreen();
+    try {
+      await RNSentiance.start();
+      showDashboardScreen();
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <View style={styles.contentView}>
