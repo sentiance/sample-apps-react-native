@@ -7,7 +7,7 @@ import {TextViewProps} from './typings';
 
 const TextView: FC<TextViewProps> = ({title, status}): JSX.Element => {
   const statusText = () => {
-    if (status === 'NEVER') {
+    if (status === 'NEVER' || status === 'DENIED') {
       return <Text style={styles.statusErrorText}>{status}</Text>;
     } else if (status === 'ALWAYS') {
       return <Text style={styles.statusSuccessText}>{status}</Text>;

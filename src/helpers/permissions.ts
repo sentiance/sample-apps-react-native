@@ -21,6 +21,9 @@ interface PermissionProps {
   'ios.permission.LOCATION_ALWAYS': string;
   'ios.permission.LOCATION_WHEN_IN_USE': string;
   'ios.permission.MOTION': string;
+  'android.permission.ACCESS_BACKGROUND_LOCATION': string;
+  'android.permission.ACCESS_FINE_LOCATION': string;
+  'android.permission.ACTIVITY_RECOGNITION': string;
 }
 const version = DeviceInfo.getSystemVersion();
 export const checkPermissions = async () => {
@@ -71,6 +74,25 @@ export const getLocationStatus = (responsePermission: PermissionProps) => {
     } else {
       return 'NEVER';
     }
+  } else {
+    if (
+      responsePermission[ACCESS_BACKGROUND_LOCATION] === 'granted' &&
+      responsePermission[ACCESS_FINE_LOCATION] === 'granted'
+    ) {
+      return 'ALWAYS';
+    } else if (
+      responsePermission[ACCESS_BACKGROUND_LOCATION] === 'denied' &&
+      responsePermission[ACCESS_FINE_LOCATION] === 'denied'
+    ) {
+      return 'DENIED';
+    } else if (
+      responsePermission[ACCESS_BACKGROUND_LOCATION] === 'denied' &&
+      responsePermission[ACCESS_FINE_LOCATION] === 'granted'
+    ) {
+      return 'WHILE IN USE';
+    } else {
+      return 'NEVER';
+    }
   }
 };
 
@@ -82,6 +104,18 @@ export const getMotionStatus = (responsePermission: any) => {
       return 'ALWAYS';
     } else if (responsePermission[MOTION] === 'denied') {
       return 'DENIED';
+    } else {
+      return 'NEVER';
+    }
+  } else {
+    if (responsePermission[ACTIVITY_RECOGNITION] === 'unavailable') {
+      return 'UNAVAILABLE';
+    } else if (responsePermission[ACTIVITY_RECOGNITION] === 'granted') {
+      return 'ALWAYS';
+    } else if (responsePermission[ACTIVITY_RECOGNITION] === 'denied') {
+      return 'DENIED';
+    } else if (responsePermission[ACTIVITY_RECOGNITION] === 'blocked') {
+      return 'BLOCLED';
     } else {
       return 'NEVER';
     }
