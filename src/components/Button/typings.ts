@@ -2,4 +2,5 @@
 export interface ButtonProps {
   text: String;
   onClick: () => void;
+  type: 'default' | 'hollow';
 }

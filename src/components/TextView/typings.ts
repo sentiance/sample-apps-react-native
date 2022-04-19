@@ -1,7 +1,7 @@
 // typings for Text View Component
 export interface TextViewProps {
   title: string;
-  status:
+  status?:
     | 'ALWAYS'
     | 'UNAVAILABLE'
     | 'DENIED'
@@ -10,4 +10,5 @@ export interface TextViewProps {
     | 'BLOCKED'
     | undefined
     | any;
+  type: 'LOCATION' | 'MOTION';
 }

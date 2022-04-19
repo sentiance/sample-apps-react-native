@@ -6,7 +6,6 @@ import styles from './styles';
 import RNSentiance from 'react-native-sentiance';
 import constants from '../../constants';
 import {HomeProps} from './typings';
-import {permissionLocationRequest} from '../../helpers/permissions';
 
 /**
  * Initializes the SDK
@@ -40,7 +39,6 @@ const linkUser = async (installId: string) => {
 
 const Home: FC<HomeProps> = ({showDashboardScreen}) => {
   const handleCreateUser = async () => {
-    permissionLocationRequest();
     const baseUrl = constants.SENTIANCE_BASE_URL;
     const response = await getCredentials();
     const {id: appId, secret: appSecret} = response;
