@@ -7,4 +7,5 @@ export default {
   PERMISSION_BLOCKED: 'blocked',
   PERMISSION_GRANTED: 'granted',
   SENTIANCE_BASE_URL: 'https://preprod-api.sentiance.com',
+  STARTED: 'STARTED',
 };

@@ -17,6 +17,7 @@ import {
   permissionText,
 } from '../../helpers/permissions';
 import {DashboardProps} from './typings';
+import constants from '../../constants';
 
 const Dashboard: FC<DashboardProps> = ({showHomeScreen}) => {
   const [initState, setInitState] = useState('');
@@ -99,8 +100,10 @@ const Dashboard: FC<DashboardProps> = ({showHomeScreen}) => {
                 status={getMotionStatus(responsePermission)}
               />
               <View style={styles.divider} />
-              {getLocationStatus(responsePermission) === 'granted' &&
-              getMotionStatus(responsePermission) === 'granted' ? (
+              {getLocationStatus(responsePermission) ===
+                constants.PERMISSION_GRANTED &&
+              getMotionStatus(responsePermission) ===
+                constants.PERMISSION_GRANTED ? (
                 <Text style={styles.permissionText}>
                   All permissions provided
                 </Text>
@@ -112,7 +115,7 @@ const Dashboard: FC<DashboardProps> = ({showHomeScreen}) => {
                   )}
                 </Text>
               )}
-              {startStatus !== 'STARTED' && (
+              {startStatus !== constants.STARTED && (
                 <Button
                   type="hollow"
                   onClick={async () => {
