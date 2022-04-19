@@ -1,7 +1,7 @@
 // typings for Text View Component
 export interface TextViewProps {
   title: string;
-  status?:
+  status:
     | 'ALWAYS'
     | 'UNAVAILABLE'
     | 'DENIED'
