@@ -18,6 +18,7 @@ import {
 } from '../../helpers/permissions';
 import {DashboardProps} from './typings';
 import constants from '../../constants';
+import {openSettings} from 'react-native-permissions';
 
 const Dashboard: FC<DashboardProps> = ({showHomeScreen}) => {
   const [initState, setInitState] = useState('');
@@ -62,6 +63,15 @@ const Dashboard: FC<DashboardProps> = ({showHomeScreen}) => {
       subscription.remove();
     };
   }, []);
+
+  const openPermissions = async () => {
+    if (!getLocationStatus(responsePermission)) {
+      await permissionLocationRequest();
+      permissionMotionRequest();
+    } else {
+      openSettings();
+    }
+  };
 
   return (
     <ScrollView>
@@ -118,10 +128,7 @@ const Dashboard: FC<DashboardProps> = ({showHomeScreen}) => {
               {startStatus !== constants.STARTED && (
                 <Button
                   type="hollow"
-                  onClick={async () => {
-                    await permissionLocationRequest();
-                    permissionMotionRequest();
-                  }}
+                  onClick={openPermissions}
                   text="Give Permissions"
                 />
               )}
