@@ -10,4 +10,5 @@ export interface TextViewProps {
     | 'BLOCKED'
     | undefined
     | any;
+  type: 'LOCATION' | 'MOTION';
 }

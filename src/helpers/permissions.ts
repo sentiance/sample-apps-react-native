@@ -6,8 +6,10 @@ import {
   RESULTS,
   LocationAccuracy,
   request,
+  openSettings,
 } from 'react-native-permissions';
 import DeviceInfo from 'react-native-device-info';
+import constants from '../constants';
 const {
   ANDROID: {
     ACCESS_BACKGROUND_LOCATION,
@@ -38,7 +40,12 @@ export const checkPermissions = async () => {
     if (states[LOCATION_ALWAYS] === RESULTS.GRANTED) {
       locationAccuracy = await checkLocationAccuracy();
     }
-
+    if (
+      states[LOCATION_ALWAYS] === RESULTS.BLOCKED ||
+      states[MOTION] === RESULTS.BLOCKED
+    ) {
+      openSettings();
+    }
     results = {
       ...states,
       locationAccuracy: locationAccuracy as LocationAccuracy,
@@ -49,6 +56,12 @@ export const checkPermissions = async () => {
       ACCESS_FINE_LOCATION,
       ACTIVITY_RECOGNITION,
     ]);
+    if (
+      states[ACCESS_FINE_LOCATION] === RESULTS.BLOCKED ||
+      states[ACTIVITY_RECOGNITION] === RESULTS.BLOCKED
+    ) {
+      openSettings();
+    }
 
     results = {
       ...states,
@@ -59,65 +72,36 @@ export const checkPermissions = async () => {
 
 export const getLocationStatus = (responsePermission: PermissionProps) => {
   if (Platform.OS === 'ios') {
-    if (
-      (responsePermission[LOCATION_ALWAYS] === 'denied' ||
-        responsePermission[LOCATION_ALWAYS] === 'blocked') &&
-      responsePermission[LOCATION_WHEN_IN_USE] === 'granted'
-    ) {
-      return 'WHILE IN USE';
-    } else if (
-      responsePermission[LOCATION_ALWAYS] === 'granted' &&
-      (responsePermission[LOCATION_WHEN_IN_USE] === 'blocked' ||
-        responsePermission[LOCATION_WHEN_IN_USE] === 'granted')
-    ) {
-      return 'ALWAYS';
+    if (responsePermission[LOCATION_ALWAYS] === constants.PERMISSION_DENIED) {
+      return '';
     } else {
-      return 'NEVER';
+      return responsePermission[LOCATION_ALWAYS];
     }
   } else {
     if (
-      responsePermission[ACCESS_BACKGROUND_LOCATION] === 'granted' &&
-      responsePermission[ACCESS_FINE_LOCATION] === 'granted'
+      responsePermission[ACCESS_FINE_LOCATION] === constants.PERMISSION_DENIED
     ) {
-      return 'ALWAYS';
-    } else if (
-      responsePermission[ACCESS_BACKGROUND_LOCATION] === 'denied' &&
-      responsePermission[ACCESS_FINE_LOCATION] === 'denied'
-    ) {
-      return 'DENIED';
-    } else if (
-      responsePermission[ACCESS_BACKGROUND_LOCATION] === 'denied' &&
-      responsePermission[ACCESS_FINE_LOCATION] === 'granted'
-    ) {
-      return 'WHILE IN USE';
+      return '';
     } else {
-      return 'NEVER';
+      return responsePermission[ACCESS_FINE_LOCATION];
     }
   }
 };
 
 export const getMotionStatus = (responsePermission: any) => {
   if (Platform.OS === 'ios') {
-    if (responsePermission[MOTION] === 'unavailable') {
-      return 'UNAVAILABLE';
-    } else if (responsePermission[MOTION] === 'granted') {
-      return 'ALWAYS';
-    } else if (responsePermission[MOTION] === 'denied') {
-      return 'DENIED';
+    if (responsePermission[MOTION] === constants.PERMISSION_DENIED) {
+      return '';
     } else {
-      return 'NEVER';
+      return responsePermission[MOTION];
     }
   } else {
-    if (responsePermission[ACTIVITY_RECOGNITION] === 'unavailable') {
-      return 'UNAVAILABLE';
-    } else if (responsePermission[ACTIVITY_RECOGNITION] === 'granted') {
-      return 'ALWAYS';
-    } else if (responsePermission[ACTIVITY_RECOGNITION] === 'denied') {
-      return 'DENIED';
-    } else if (responsePermission[ACTIVITY_RECOGNITION] === 'blocked') {
-      return 'BLOCLED';
+    if (
+      responsePermission[ACTIVITY_RECOGNITION] === constants.PERMISSION_DENIED
+    ) {
+      return '';
     } else {
-      return 'NEVER';
+      return responsePermission[ACTIVITY_RECOGNITION];
     }
   }
 };
@@ -143,5 +127,17 @@ export const permissionLocationRequest = async () => {
     if (parseInt(version) >= 10) {
       await request(PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION);
     }
+  }
+};
+
+// permission grant status text
+export const permissionText = (
+  locationStatus: string,
+  motionStatus: string,
+) => {
+  if (locationStatus === 'denied' && motionStatus === 'denied') {
+    return 'Grant permissions to start SDK';
+  } else {
+    return 'Please provide “Always”  permission';
   }
 };
