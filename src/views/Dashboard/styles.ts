@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
   },
   contentView: {
     height: '100%',
+    flex: 1,
   },
   divider: {
     height: 1,
@@ -24,12 +25,14 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     fontSize: size.sm,
     color: colors.green,
+    marginBottom: spacing.lg,
   },
   permissionTextError: {
     textAlign: 'center',
     fontStyle: 'italic',
     fontSize: size.sm,
     color: colors.red,
+    marginBottom: spacing.lg,
   },
   buttonView: {
     marginBottom: 40,

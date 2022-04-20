@@ -12,8 +12,12 @@ import {
   checkPermissions,
   getLocationStatus,
   getMotionStatus,
+  permissionLocationRequest,
+  permissionMotionRequest,
+  permissionText,
 } from '../../helpers/permissions';
 import {DashboardProps} from './typings';
+import constants from '../../constants';
 
 const Dashboard: FC<DashboardProps> = ({showHomeScreen}) => {
   const [initState, setInitState] = useState('');
@@ -23,6 +27,7 @@ const Dashboard: FC<DashboardProps> = ({showHomeScreen}) => {
   const appState = useRef(AppState.currentState);
 
   useEffect(() => {
+    // reload page when open
     const subscription = AppState.addEventListener(
       'change',
 
@@ -38,6 +43,7 @@ const Dashboard: FC<DashboardProps> = ({showHomeScreen}) => {
       },
     );
 
+    // Check for motion and location permissions
     async function checkAllPermission() {
       let response = await checkPermissions();
       setResponsePermission(response);
@@ -83,29 +89,47 @@ const Dashboard: FC<DashboardProps> = ({showHomeScreen}) => {
               </Text>
               <View style={styles.divider} />
               <TextView
+                type="LOCATION"
                 title="Location"
                 status={getLocationStatus(responsePermission)}
               />
               <View style={styles.divider} />
               <TextView
+                type="MOTION"
                 title="Motion"
                 status={getMotionStatus(responsePermission)}
               />
               <View style={styles.divider} />
-              {getLocationStatus(responsePermission) === 'ALWAYS' &&
-              getMotionStatus(responsePermission) === 'ALWAYS' ? (
+              {getLocationStatus(responsePermission) ===
+                constants.PERMISSION_GRANTED &&
+              getMotionStatus(responsePermission) ===
+                constants.PERMISSION_GRANTED ? (
                 <Text style={styles.permissionText}>
                   All permissions provided
                 </Text>
               ) : (
                 <Text style={styles.permissionTextError}>
-                  App will not work optimaly
+                  {permissionText(
+                    getLocationStatus(responsePermission),
+                    getMotionStatus(responsePermission),
+                  )}
                 </Text>
+              )}
+              {startStatus !== constants.STARTED && (
+                <Button
+                  type="hollow"
+                  onClick={async () => {
+                    await permissionLocationRequest();
+                    permissionMotionRequest();
+                  }}
+                  text="Give Permissions"
+                />
               )}
             </Box>
           </View>
           <View style={styles.buttonView}>
             <Button
+              type="default"
               onClick={async () => {
                 await RNSentiance.resetExperimental();
                 showHomeScreen();
