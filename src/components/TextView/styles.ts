@@ -25,11 +25,13 @@ const styles = StyleSheet.create({
     fontSize: size.sm,
     fontWeight: 'bold',
   },
-  statusProgressText: {
-    marginLeft: 'auto',
-    color: colors.orange,
+  statusGivePermissionsText: {
+    color: colors.primary,
     fontSize: size.sm,
     fontWeight: 'bold',
+  },
+  styleTouchableOpacity: {
+    marginLeft: 'auto',
   },
 });
 export default styles;

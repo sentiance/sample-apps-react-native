@@ -1,18 +1,35 @@
 import React, {FC} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import styles from './styles';
 import {TextViewProps} from './typings';
+import {
+  permissionLocationRequest,
+  permissionMotionRequest,
+} from '../../helpers/permissions';
+import constants from '../../constants';
 
 // TextView component which takes title and status as props
 
-const TextView: FC<TextViewProps> = ({title, status}): JSX.Element => {
+const TextView: FC<TextViewProps> = ({type, title, status}): JSX.Element => {
   const statusText = () => {
-    if (status === 'NEVER') {
-      return <Text style={styles.statusErrorText}>{status}</Text>;
-    } else if (status === 'ALWAYS') {
-      return <Text style={styles.statusSuccessText}>{status}</Text>;
+    if (!status) {
+      return (
+        <TouchableOpacity
+          onPress={
+            type === 'LOCATION'
+              ? permissionLocationRequest
+              : permissionMotionRequest
+          }
+          style={styles.styleTouchableOpacity}>
+          <Text style={styles.statusGivePermissionsText}>Give permission</Text>
+        </TouchableOpacity>
+      );
+    } else if (status === constants.PERMISSION_GRANTED) {
+      return (
+        <Text style={styles.statusSuccessText}>{status.toUpperCase()}</Text>
+      );
     } else {
-      return <Text style={styles.statusProgressText}>{status}</Text>;
+      return <Text style={styles.statusErrorText}>{status.toUpperCase()}</Text>;
     }
   };
   return (

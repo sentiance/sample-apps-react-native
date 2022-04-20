@@ -7,5 +7,8 @@ export interface TextViewProps {
     | 'DENIED'
     | 'WHILE IN USE'
     | 'NEVER'
-    | undefined;
+    | 'BLOCKED'
+    | undefined
+    | any;
+  type: 'LOCATION' | 'MOTION';
 }
