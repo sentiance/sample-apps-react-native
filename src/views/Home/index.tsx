@@ -48,17 +48,14 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
         linker: async (data, done) => {
           try {
             // request your backend to perform user linking
-            console.log('before linking');
             await linkUser(data.installId);
             // Ensure you call the "done" after
-            console.log('after linking');
             done();
           } catch (err) {
             console.log(err);
           }
         },
       });
-      console.log('before start');
       await RNSentiance.start();
       showDashboardScreen();
     } catch (err) {
