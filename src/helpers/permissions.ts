@@ -60,7 +60,7 @@ export const checkPermissions = async () => {
       states[ACCESS_FINE_LOCATION] === RESULTS.BLOCKED ||
       states[ACTIVITY_RECOGNITION] === RESULTS.BLOCKED
     ) {
-      openSettings;
+      openSettings();
     }
 
     results = {
