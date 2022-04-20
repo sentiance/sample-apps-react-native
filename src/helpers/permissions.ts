@@ -6,7 +6,6 @@ import {
   RESULTS,
   LocationAccuracy,
   request,
-  openSettings,
 } from 'react-native-permissions';
 import DeviceInfo from 'react-native-device-info';
 import constants from '../constants';
@@ -40,12 +39,6 @@ export const checkPermissions = async () => {
     if (states[LOCATION_ALWAYS] === RESULTS.GRANTED) {
       locationAccuracy = await checkLocationAccuracy();
     }
-    if (
-      states[LOCATION_ALWAYS] === RESULTS.BLOCKED ||
-      states[MOTION] === RESULTS.BLOCKED
-    ) {
-      openSettings();
-    }
     results = {
       ...states,
       locationAccuracy: locationAccuracy as LocationAccuracy,
@@ -56,12 +49,6 @@ export const checkPermissions = async () => {
       ACCESS_FINE_LOCATION,
       ACTIVITY_RECOGNITION,
     ]);
-    if (
-      states[ACCESS_FINE_LOCATION] === RESULTS.BLOCKED ||
-      states[ACTIVITY_RECOGNITION] === RESULTS.BLOCKED
-    ) {
-      openSettings();
-    }
 
     results = {
       ...states,
