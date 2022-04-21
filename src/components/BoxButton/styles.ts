@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import colors from '../../constants/colors';
 import spacing from '../../constants/spacing';
 
 // Style for Box Button component
@@ -28,6 +29,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 100,
     width: '100%',
+  },
+  diableText: {
+    color: colors.darkGrey,
   },
 });
 export default styles;

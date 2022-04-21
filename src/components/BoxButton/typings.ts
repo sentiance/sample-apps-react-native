@@ -2,4 +2,5 @@
 export interface BoxButtonProps {
   onPress: () => {};
   title: string;
+  inactive?: boolean;
 }

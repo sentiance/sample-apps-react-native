@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {View, Text} from 'react-native';
 import axios from 'axios';
 import BoxButton from '../../components/BoxButton';
@@ -38,7 +38,10 @@ const linkUser = async (installId: string) => {
 };
 
 const Home: FC<HomeProps> = ({showDashboardScreen}) => {
+  const [loading, setLoading] = useState(false);
+
   const handleCreateUser = async () => {
+    setLoading(true);
     const baseUrl = constants.SENTIANCE_BASE_URL;
     const response = await getCredentials();
     const {id: appId, secret: appSecret} = response;
@@ -57,6 +60,7 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
         },
       });
       await RNSentiance.start();
+      setLoading(false);
       showDashboardScreen();
     } catch (err) {
       console.log(err);
@@ -67,7 +71,11 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
       <View style={styles.helloTextView}>
         <Text style={styles.helloText}>Hello there!</Text>
       </View>
-      <BoxButton onPress={() => handleCreateUser()} title="Create SDK User" />
+      <BoxButton
+        inactive={loading}
+        onPress={() => handleCreateUser()}
+        title="Create SDK User"
+      />
     </View>
   );
 };
