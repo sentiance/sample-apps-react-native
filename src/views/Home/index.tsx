@@ -66,9 +66,7 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
     <View style={styles.contentView}>
       <View style={styles.helloTextView}>
         <Text style={styles.helloText}>Hello there!</Text>
-        <Text>Please select your initialization method</Text>
       </View>
-
       <View style={styles.sdkBoxView}>
         <BoxButton title="Create User" onPress={() => handleCreateUser()} />
       </View>
