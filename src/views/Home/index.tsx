@@ -67,7 +67,7 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
       <View style={styles.helloTextView}>
         <Text style={styles.helloText}>Hello there!</Text>
       </View>
-      <BoxButton onPress={() => handleCreateUser()} title="Create User" />
+      <BoxButton onPress={() => handleCreateUser()} title="Create SDK User" />
     </View>
   );
 };
