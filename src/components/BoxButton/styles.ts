@@ -23,5 +23,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
   },
+  sdkBoxView: {
+    alignContent: 'center',
+    position: 'absolute',
+    bottom: 100,
+    width: '100%',
+  },
 });
 export default styles;

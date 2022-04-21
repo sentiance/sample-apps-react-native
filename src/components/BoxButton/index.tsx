@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {View, Image, TouchableOpacity, Text} from 'react-native';
+import {View, Image, Text, TouchableOpacity} from 'react-native';
 import styles from './styles';
 import {BoxButtonProps} from './typings';
 import {attach, forward} from '../../assets';
@@ -9,19 +9,19 @@ import Box from '../Box';
 
 const BoxButton: FC<BoxButtonProps> = ({onPress, title}): JSX.Element => {
   return (
-    <Box>
-      <View style={styles.boxView}>
-        <TouchableOpacity onPress={onPress}>
-          <Image style={styles.imageView} source={attach} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={onPress}>
-          <View style={styles.bottomView}>
-            <Text>{title}</Text>
-            <Image style={styles.forwardImage} source={forward} />
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.sdkBoxView}>
+        <Box>
+          <View style={styles.boxView}>
+            <Image style={styles.imageView} source={attach} />
+            <View style={styles.bottomView}>
+              <Text>{title}</Text>
+              <Image style={styles.forwardImage} source={forward} />
+            </View>
           </View>
-        </TouchableOpacity>
+        </Box>
       </View>
-    </Box>
+    </TouchableOpacity>
   );
 };
 
