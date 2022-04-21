@@ -64,6 +64,7 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
       showDashboardScreen();
     } catch (err) {
       console.log(err);
+      setLoading(false);
     }
   };
   return (
