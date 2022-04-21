@@ -1,5 +1,5 @@
 import React, {FC, useState} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Alert} from 'react-native';
 import axios from 'axios';
 import BoxButton from '../../components/BoxButton';
 import styles from './styles';
@@ -15,6 +15,7 @@ import {HomeProps} from './typings';
  */
 
 const getCredentials = async () => {
+  console.log('Fetching credentials from the sample backend service');
   try {
     const response = await axios.get(`${constants.BASE_URL}/config`, {
       headers: {
@@ -24,6 +25,9 @@ const getCredentials = async () => {
     return response.data;
   } catch (err) {
     console.log(`Error: ${err}`);
+    Alert.alert(
+      'Error: It seems that the sample backend service is not running.',
+    );
   }
 };
 
@@ -65,6 +69,7 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
     } catch (err) {
       console.log(err);
       setLoading(false);
+      Alert.alert(`Error: ${err}`);
     }
   };
   return (
