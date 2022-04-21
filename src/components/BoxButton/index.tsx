@@ -12,27 +12,21 @@ const BoxButton: FC<BoxButtonProps> = ({
   title,
   inactive,
 }): JSX.Element => {
-  return inactive ? (
-    <View style={styles.sdkBoxView}>
-      <Box>
-        <View style={styles.boxView}>
-          <Image style={styles.imageView} source={attachDisable} />
-          <View style={styles.bottomView}>
-            <Text style={styles.diableText}>{title}</Text>
-            <Image style={styles.forwardImage} source={forwardDisable} />
-          </View>
-        </View>
-      </Box>
-    </View>
-  ) : (
-    <TouchableOpacity onPress={onPress}>
+  return (
+    <TouchableOpacity disabled={inactive} onPress={onPress}>
       <View style={styles.sdkBoxView}>
         <Box>
           <View style={styles.boxView}>
-            <Image style={styles.imageView} source={attach} />
+            <Image
+              style={styles.imageView}
+              source={inactive ? attachDisable : attach}
+            />
             <View style={styles.bottomView}>
-              <Text>{title}</Text>
-              <Image style={styles.forwardImage} source={forward} />
+              <Text style={inactive ? styles.diableText : null}>{title}</Text>
+              <Image
+                style={styles.forwardImage}
+                source={inactive ? forwardDisable : forward}
+              />
             </View>
           </View>
         </Box>
