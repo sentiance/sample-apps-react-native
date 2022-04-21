@@ -60,9 +60,6 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
             done();
           } catch (err) {
             console.log(err);
-            Alert.alert(
-              'error: it seems that the sample backend service is not running.',
-            );
           }
         },
       });
@@ -72,9 +69,7 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
     } catch (err) {
       console.log(err);
       setLoading(false);
-      Alert.alert(
-        'error: it seems that the sample backend service is not running.',
-      );
+      Alert.alert(`Error: ${err}`);
     }
   };
   return (
