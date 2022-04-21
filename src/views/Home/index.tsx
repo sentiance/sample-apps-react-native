@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text} from 'react-native';
 import axios from 'axios';
 import BoxButton from '../../components/BoxButton';
 import styles from './styles';
@@ -68,11 +68,7 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
         <Text style={styles.helloText}>Hello there!</Text>
         <Text>Please select your initialization method</Text>
       </View>
-      <TouchableOpacity onPress={() => handleCreateUser()}>
-        <View style={styles.sdkBoxView}>
-          <BoxButton title="Create User" />
-        </View>
-      </TouchableOpacity>
+      <BoxButton onPress={() => handleCreateUser()} title="Create User" />
     </View>
   );
 };

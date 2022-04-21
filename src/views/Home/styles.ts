@@ -3,12 +3,6 @@ import colors from '../../constants/colors';
 import size from '../../constants/size';
 
 const styles = StyleSheet.create({
-  sdkBoxView: {
-    alignContent: 'center',
-    position: 'absolute',
-    bottom: 100,
-    width: '100%',
-  },
   contentView: {
     height: '100%',
   },
