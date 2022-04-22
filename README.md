@@ -2,7 +2,7 @@
 
 This is a sample application to demonstrate how to integrate the Sentiance in both android and iOS SDK.
 
-![](images/dashboard.png) &nbsp ![](images/home.png)
+![](images/dashboard.png) &nbsp; ![](images/home.png)
 
 ## What's in this?
 
