@@ -2,7 +2,10 @@
 
 This is a sample application to demonstrate how to integrate the Sentiance in both android and iOS SDK.
 
+![](images/dashboard.png) ![](images/home.png)
+
 ## What's in this?
+
 In this sample application we cover
 
 1. SDK Integration - with user linking
@@ -19,5 +22,3 @@ handleCreateUser method requires SDK credentials, and we recommend that you don'
 This sample api server also demonstrates the user linking workflow as well. Ensure the sample api server is running before launching the sample app.
 
 If you have any queries please write to support@sentiance.com or create a Github issue and we shall help you out!
-
-
