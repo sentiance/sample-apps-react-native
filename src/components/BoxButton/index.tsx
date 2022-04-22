@@ -13,8 +13,11 @@ const BoxButton: FC<BoxButtonProps> = ({
   inactive,
 }): JSX.Element => {
   return (
-    <TouchableOpacity disabled={inactive} onPress={onPress}>
-      <View style={styles.sdkBoxView}>
+    <TouchableOpacity
+      style={styles.sdkBoxView}
+      disabled={inactive}
+      onPress={onPress}>
+      <View>
         <Box>
           <View style={styles.boxView}>
             <Image
