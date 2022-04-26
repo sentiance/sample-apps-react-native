@@ -21,9 +21,11 @@ For android initialization go inside android folder then look for **RNSentianceH
 Inside home.tsx look for **handleCreateUser** method that requires SDK credentials, and we recommend that you don't store the credentials in the application codebase. Therefore we created a sample api server which returns the SDK credentials.
 This sample api server also demonstrates the user linking workflow as well. Ensure the sample api server is running before launching the sample app.
 
-## SDK and Init status
+## SDK init status and start status
 
 Inside dashboard.tsx we are calling **RNSentiance.getInitState()** and **RNSentiance.getSdkStatus()** to know about the status of SDK whether it's initialized or in pending state.
 
+As a user you need to give motion and location permissions to the app so that your activity is recorded.
+Inside dashboard page go look for **RNSentiance.resetExperimental** to stop SDK function.
 
 If you have any queries please write to support@sentiance.com or create a Github issue and we shall help you out!
