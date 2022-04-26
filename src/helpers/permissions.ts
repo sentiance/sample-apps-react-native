@@ -122,9 +122,12 @@ export const permissionText = (
   locationStatus: string,
   motionStatus: string,
 ) => {
-  if (locationStatus === 'denied' && motionStatus === 'denied') {
-    return 'Grant permissions to start SDK';
-  } else {
+  if (
+    locationStatus === 'denied' ||
+    (locationStatus === 'blocked' && motionStatus === 'granted')
+  ) {
     return 'Please provide “Always”  permission';
+  } else {
+    return 'Grant permissions to start SDK';
   }
 };
