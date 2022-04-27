@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, { FC, useState } from 'react';
 import { View, Text, Alert, LogBox } from 'react-native';
 import axios from 'axios';
