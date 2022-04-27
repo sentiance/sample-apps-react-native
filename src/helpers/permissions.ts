@@ -127,6 +127,8 @@ export const permissionText = (
     (locationStatus === 'blocked' && motionStatus === 'granted')
   ) {
     return 'Please provide “Always”  permission';
+  } else if (locationStatus === 'granted' && motionStatus !== 'granted') {
+    return 'Grant motion permission to increase the quality of detections';
   } else {
     return 'Grant permissions to start SDK';
   }

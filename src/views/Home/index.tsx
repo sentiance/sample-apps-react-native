@@ -1,57 +1,64 @@
-import React, {FC, useState} from 'react';
-import {View, Text, Alert} from 'react-native';
+/* eslint-disable prettier/prettier */
+import React, { FC, useState } from 'react';
+import { View, Text, Alert, LogBox } from 'react-native';
 import axios from 'axios';
 import BoxButton from '../../components/BoxButton';
 import styles from './styles';
 import RNSentiance from 'react-native-sentiance';
 import constants from '../../constants';
-import {HomeProps} from './typings';
-
-/**
- * Initializes the SDK
- *
- * The below method queries the sample "api" to fetch the
- * SDK credentials and initializes the Sentiance SDK
- */
-
-const getCredentials = async () => {
-  console.log('Fetching credentials from the sample backend service');
-  try {
-    const response = await axios.get(`${constants.BASE_URL}/config`, {
-      headers: {
-        Authorization: 'Basic ZGV2LTE6dGVzdA==',
-      },
-    });
-    return response.data;
-  } catch (err) {
-    console.log(`Error: ${err}`);
-    Alert.alert(
-      'Error: It seems that the sample backend service is not running.',
-    );
-  }
-};
+import { HomeProps } from './typings';
 
 const linkUser = async (installId: string) => {
   await axios.post(
     `${constants.BASE_URL}/users/${installId}/link`,
     {},
     {
-      headers: {Authorization: 'Basic ZGV2LTE6dGVzdA=='},
+      headers: { Authorization: 'Basic ZGV2LTE6dGVzdA==' },
     },
   );
 };
 
-const Home: FC<HomeProps> = ({showDashboardScreen}) => {
+const Home: FC<HomeProps> = ({ showDashboardScreen }) => {
   const [loading, setLoading] = useState(false);
+
+  /**
+   * Initializes the SDK
+   *
+   * The below method queries the sample "api" to fetch the
+   * SDK credentials and initializes the Sentiance SDK
+   */
+
+  const getCredentials = async () => {
+    LogBox.ignoreAllLogs();
+    console.log('Fetching credentials from the sample backend service');
+    try {
+      const response = await axios.get(`${constants.BASE_URL}/config`, {
+        headers: {
+          Authorization: 'Basic ZGV2LTE6dGVzdA==',
+        },
+      });
+      return response.data;
+    } catch (err) {
+      console.log(`Error: ${err}`);
+      Alert.alert(
+        'Error:',
+        'It seems that the sample backend service is not running.',
+        [
+          { text: 'OK', onPress: () => setLoading(false) },
+        ]
+      );
+      return;
+    }
+  };
 
   const handleCreateUser = async () => {
     setLoading(true);
     const baseUrl = constants.SENTIANCE_BASE_URL;
     const response = await getCredentials();
-    const {id: appId, secret: appSecret} = response;
+    const { id: appId, secret: appSecret } = response;
     try {
       await RNSentiance.createUserExperimental({
-        credentials: {appId, appSecret, baseUrl},
+        credentials: { appId, appSecret, baseUrl },
         linker: async (data, done) => {
           try {
             // request your backend to perform user linking
@@ -63,7 +70,11 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
           }
         },
       });
+      try {
       await RNSentiance.start();
+      } catch (err) {
+        console.log(err);
+      }
       setLoading(false);
       showDashboardScreen();
     } catch (err) {
