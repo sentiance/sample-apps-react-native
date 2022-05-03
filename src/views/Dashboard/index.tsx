@@ -21,7 +21,6 @@ import constants from '../../constants';
 import {openSettings} from 'react-native-permissions';
 
 const Dashboard: FC<DashboardProps> = ({showHomeScreen}) => {
-  const isScreenMounted = useRef(true);
   const [initState, setInitState] = useState('');
   const [startStatus, setStartStatus] = useState('');
   const [userId, setUserId] = useState('');
