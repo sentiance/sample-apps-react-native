@@ -1,35 +1,11 @@
 import React, {FC, useState} from 'react';
-import {View, Text, Alert} from 'react-native';
+import {View, Text, Alert, LogBox} from 'react-native';
 import axios from 'axios';
 import BoxButton from '../../components/BoxButton';
 import styles from './styles';
 import RNSentiance from 'react-native-sentiance';
 import constants from '../../constants';
 import {HomeProps} from './typings';
-
-/**
- * Initializes the SDK
- *
- * The below method queries the sample "api" to fetch the
- * SDK credentials and initializes the Sentiance SDK
- */
-
-const getCredentials = async () => {
-  console.log('Fetching credentials from the sample backend service');
-  try {
-    const response = await axios.get(`${constants.BASE_URL}/config`, {
-      headers: {
-        Authorization: 'Basic ZGV2LTE6dGVzdA==',
-      },
-    });
-    return response.data;
-  } catch (err) {
-    console.log(`Error: ${err}`);
-    Alert.alert(
-      'Error: It seems that the sample backend service is not running.',
-    );
-  }
-};
 
 const linkUser = async (installId: string) => {
   await axios.post(
@@ -43,6 +19,27 @@ const linkUser = async (installId: string) => {
 
 const Home: FC<HomeProps> = ({showDashboardScreen}) => {
   const [loading, setLoading] = useState(false);
+
+  const getCredentials = async () => {
+    LogBox.ignoreAllLogs();
+    console.log('Fetching credentials from the sample backend service');
+    try {
+      const response = await axios.get(`${constants.BASE_URL}/config`, {
+        headers: {
+          Authorization: 'Basic ZGV2LTE6dGVzdA==',
+        },
+      });
+      return response.data;
+    } catch (err) {
+      console.log(`Error: ${err}`);
+      Alert.alert(
+        'Error:',
+        'It seems that the sample backend service is not running.',
+        [{text: 'OK', onPress: () => setLoading(false)}],
+      );
+      return;
+    }
+  };
 
   const handleCreateUser = async () => {
     setLoading(true);
@@ -63,7 +60,11 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
           }
         },
       });
-      await RNSentiance.start();
+      try {
+        await RNSentiance.start();
+      } catch (err) {
+        console.log(err);
+      }
       setLoading(false);
       showDashboardScreen();
     } catch (err) {
