@@ -61,7 +61,6 @@ const Dashboard: FC<DashboardProps> = ({showHomeScreen}) => {
     });
     return () => {
       subscription.remove();
-      isScreenMounted.current = false;
     };
   }, []);
 
