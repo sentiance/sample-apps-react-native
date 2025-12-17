@@ -20,9 +20,10 @@ There are three places you need to look at
 2. Setup your backend to provide authentication code to Application. See: [**sample api server**](https://github.com/sentiance/sample-apps-api)
 3. In `package.json` update the [`@sentiance-react-native/core`](https://github.com/sentiance/react-native-sentiance) dependency version to the latest one.
 4. Update the `BASE_URL` in `constants.ts` to get authentication code from your server.
-5. Run `npm i` to install the dependencies.
-6. Run `pod install` inside iOS project directory.
-7. Run iOS / Android apps using cmd or Android Studio / Xcode.
+5. Install pnpm `npm install -g pnpm`
+6. Run `pnpm i` to install the dependencies.
+7. Run `pod install` inside iOS project directory.
+8. Run iOS / Android apps using cmd or Android Studio / Xcode.
 
 ## More info
 
