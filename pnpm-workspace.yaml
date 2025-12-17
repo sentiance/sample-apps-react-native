@@ -1,0 +1,13 @@
+minimumReleaseAge: 21600
+
+minimumReleaseAgeExclude:
+  - '@sentiance-react-native/*'
+
+nodeLinker: hoisted
+
+strictDepBuilds: true
+
+trustPolicy: no-downgrade
+
+trustPolicyExclude:
+  - semver
