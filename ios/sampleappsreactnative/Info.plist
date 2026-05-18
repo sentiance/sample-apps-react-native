@@ -48,9 +48,15 @@
 	<string></string>
 	<key>NSMotionUsageDescription</key>
 	<string>This application requires motion permission to display driving behavior</string>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.sentiance.backgroundtask.task_processing</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
+		<string>fetch</string>
+		<string>processing</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
