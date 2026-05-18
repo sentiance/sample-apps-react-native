@@ -19,9 +19,10 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
     setLoading(true);
     try {
       const authCodeResponse = await requestAuthCode();
-      const {auth_code: authCode} = authCodeResponse.data;
+      const {auth_code: authCode, platform_url: platformUrl} = authCodeResponse.data;
       const createUserResult = await SentianceCore.createUser({
-        authCode
+        authCode,
+        platformUrl,
       });
       console.log(
         'Created a new user with the following ID: ' , createUserResult.userInfo.userId
