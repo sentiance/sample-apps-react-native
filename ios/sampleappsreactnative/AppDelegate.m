@@ -31,14 +31,16 @@ static void InitializeFlipper(UIApplication *application) {
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif
-  
+
+  // Initialize the SDK as early as possible in the launch sequence, on the main
+  // thread, before didFinishLaunchingWithOptions returns, as the SDK requires.
+  [self initializeSentianceSDK:launchOptions];
+
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"sampleappsreactnative"
                                             initialProperties:nil];
-  
-  [self initializeSentianceSDK:launchOptions];
-  
+
   if (@available(iOS 13.0, *)) {
     rootView.backgroundColor = [UIColor systemBackgroundColor];
   } else {
@@ -54,12 +56,20 @@ static void InitializeFlipper(UIApplication *application) {
 }
 
 - (void) initializeSentianceSDK:(nullable NSDictionary *)launchOptions {
-  SENTInitializationResult *result = [[RNSentianceHelper alloc] initializeSDKWithLaunchOptions:launchOptions];
-  if (!result.isSuccessful) {
-    NSLog(@"Sentiance SDK initialization failed. Error: %lu", (unsigned long)result.failureReason);
-  } else {
-    NSLog(@"Successfully initialized Sentianced SDK");
-  }
+  // Trigger the asynchronous SDK initializer on the main thread, before
+  // didFinishLaunchingWithOptions returns. The call returns immediately and
+  // finishes the bootstrap off the startup thread, keeping app launch snappy.
+  // The JavaScript layer awaits SentianceCore.ensureInitialized() to learn when
+  // the SDK is ready; the completion handler below is only for native logging.
+  [[RNSentianceHelper alloc] initializeAsyncWithLaunchOptions:launchOptions
+                                            completionHandler:^(SENTAsyncInitializationResult * _Nullable result,
+                                                                SENTAsyncInitializationError * _Nullable error) {
+    if (error != nil) {
+      NSLog(@"Sentiance SDK initialization failed. Error: %lu", (unsigned long)error.failureReason);
+    } else {
+      NSLog(@"Successfully initialized Sentiance SDK");
+    }
+  }];
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge

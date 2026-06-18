@@ -302,10 +302,10 @@ PODS:
     - React-Core
   - RNPermissions (3.10.1):
     - React-Core
-  - RNSentianceCore (6.26.0-rc.1):
+  - RNSentianceCore (6.27.0-rc.1):
     - React
-    - SENTSDK (= 6.26.0-rc1)
-  - SENTSDK (6.26.0-rc1):
+    - SENTSDK (= 6.27.0-rc1)
+  - SENTSDK (6.27.0-rc1):
     - Protobuf (~> 3.18)
     - TensorFlowLiteC (~> 2.17.0)
     - UnzipKit (~> 1.9)
@@ -492,8 +492,8 @@ SPEC CHECKSUMS:
   RNCClipboard: 41d8d918092ae8e676f18adada19104fa3e68495
   RNDeviceInfo: aad3c663b25752a52bf8fce93f2354001dd185aa
   RNPermissions: 4e3714e18afe7141d000beae3755e5b5fb2f5e05
-  RNSentianceCore: 940e01bb7cd39be5dfa5b50d63628b1af78a6c37
-  SENTSDK: d6ea952177180a44c2e65abaa96bd659575fe912
+  RNSentianceCore: d3d73119e7bce2e1e6bba5765c77bb7118127585
+  SENTSDK: 42d3c036b0a47f4921b485b705b875ce50095fe1
   TensorFlowLiteC: eac6d689a8d391d1b202dc59e3d9165ba64aaf73
   UnzipKit: 40e2c20a4928f0cfde5eb05a1108c08ee3e16bdc
   Yoga: 17cd9a50243093b547c1e539c749928dd68152da

@@ -17,8 +17,8 @@ importers:
         specifier: 1.5.1
         version: 1.5.1(react-native@0.68.1(@babel/core@7.28.5)(@babel/preset-env@7.28.5(@babel/core@7.28.5))(react@17.0.2))(react@17.0.2)
       '@sentiance-react-native/core':
-        specifier: 6.26.0-rc.1
-        version: 6.26.0-rc.1(react-native@0.68.1(@babel/core@7.28.5)(@babel/preset-env@7.28.5(@babel/core@7.28.5))(react@17.0.2))
+        specifier: 6.27.0-rc.1
+        version: 6.27.0-rc.1(react-native@0.68.1(@babel/core@7.28.5)(@babel/preset-env@7.28.5(@babel/core@7.28.5))(react@17.0.2))
       apisauce:
         specifier: ^2.1.5
         version: 2.1.6
@@ -985,8 +985,8 @@ packages:
   '@react-native/polyfills@2.0.0':
     resolution: {integrity: sha512-K0aGNn1TjalKj+65D7ycc1//H9roAQ51GJVk5ZJQFb2teECGmzd86bYDC0aYdbRf7gtovescq4Zt6FR0tgXiHQ==}
 
-  '@sentiance-react-native/core@6.26.0-rc.1':
-    resolution: {integrity: sha512-YmUhqASJAZQvdzyNaQQa/+Ig5vgqIG4CRDIZTFV9iTYrxXON44Fgc2Ur41nChtSeUGdW81J8oNEhO+B84MO4YQ==}
+  '@sentiance-react-native/core@6.27.0-rc.1':
+    resolution: {integrity: sha512-b5dwrAwMoIz/gNyItcq8eY42tXv4YudWmpd8wvFjtSXnVTk3op+dx1sSwDLfv0UrvzYDkgF+0nxKB5gAbrDwnA==}
     peerDependencies:
       expo: '>=54.0.0'
       react-native: '>=0.60'
@@ -5695,7 +5695,7 @@ snapshots:
 
   '@react-native/polyfills@2.0.0': {}
 
-  '@sentiance-react-native/core@6.26.0-rc.1(react-native@0.68.1(@babel/core@7.28.5)(@babel/preset-env@7.28.5(@babel/core@7.28.5))(react@17.0.2))':
+  '@sentiance-react-native/core@6.27.0-rc.1(react-native@0.68.1(@babel/core@7.28.5)(@babel/preset-env@7.28.5(@babel/core@7.28.5))(react@17.0.2))':
     dependencies:
       react-native: 0.68.1(@babel/core@7.28.5)(@babel/preset-env@7.28.5(@babel/core@7.28.5))(react@17.0.2)
 

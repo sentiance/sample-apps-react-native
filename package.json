@@ -19,7 +19,7 @@
         "react-native-config": "^1.4.5",
         "react-native-device-info": "^8.7.0",
         "react-native-permissions": "^3.3.1",
-        "@sentiance-react-native/core": "6.26.0-rc.1"
+        "@sentiance-react-native/core": "6.27.0-rc.1"
     },
     "devDependencies": {
         "@babel/core": "^7.12.9",

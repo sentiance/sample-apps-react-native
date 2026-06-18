@@ -16,28 +16,29 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Header from './src/components/Header';
 import Dashboard from './src/views/Dashboard';
 import Home from './src/views/Home';
+import Initialization from './src/views/Initialization';
+
 const App = () => {
+  const [initialized, setInitialized] = useState(false);
   const [showScreen, setShowScreen] = useState<boolean | string>(false);
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
+    flex: 1,
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
   useEffect(() => {
+    if (!initialized) {
+      return;
+    }
     /**
-     * Determines which screen is to be displayed.
-     *
-     * If the SDK is initialized display "<Dashboard />" else
-     * display <Home />
+     * Once the SDK is initialized, route to the dashboard if a Sentiance user
+     * already exists, otherwise show the user-creation home screen.
      */
-    SentianceCore.userExists().then((userExists: any) => {
+    SentianceCore.userExists().then((userExists: boolean) => {
       setShowScreen(userExists ? 'DASHBOARD' : 'HOME');
     });
-  }, []);
-
-  if (!showScreen) {
-    return null;
-  }
+  }, [initialized]);
 
   const updateScreen = (screen: string) => {
     setShowScreen(screen);
@@ -47,10 +48,13 @@ const App = () => {
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <Header />
-      {showScreen === 'DASHBOARD' && (
+      {!initialized && (
+        <Initialization onInitialized={() => setInitialized(true)} />
+      )}
+      {initialized && showScreen === 'DASHBOARD' && (
         <Dashboard showHomeScreen={() => updateScreen('HOME')} />
       )}
-      {showScreen === 'HOME' && (
+      {initialized && showScreen === 'HOME' && (
         <Home showDashboardScreen={() => updateScreen('DASHBOARD')} />
       )}
     </SafeAreaView>

@@ -11,7 +11,9 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.PackageList;
 import com.facebook.soloader.SoLoader;
 import com.sentiance.react.bridge.core.SentianceHelper;
-import com.sentiance.sdk.init.InitializationResult;
+import com.sentiance.sdk.init.AsyncInitializationError;
+import com.sentiance.sdk.init.AsyncInitializationResult;
+import com.sentiance.sdk.pendingoperation.PendingOperation;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -57,12 +59,28 @@ public class MainApplication extends Application implements ReactApplication {
     }
 
     private void initializeSentianceSDK() {
-        InitializationResult initializationResult = SentianceHelper.getInstance(getApplicationContext()).initializeSDK();
-        if (!initializationResult.isSuccessful()) {
-            Log.e(TAG, "Failed to initialize Sentiance SDK. Error: " + initializationResult.getFailureReason().name());
-        } else {
-            Log.i(TAG, "Sentiance SDK initialized successfully.");
+        // Trigger the asynchronous SDK initializer on the main thread, before
+        // onCreate returns. The call returns immediately and offloads the heavier
+        // initialization work to the background, keeping app launch snappy. The
+        // JavaScript layer awaits SentianceCore.ensureInitialized() to learn when
+        // the SDK is ready; the completion listener below is only for native logging.
+        PendingOperation<AsyncInitializationResult, AsyncInitializationError> initialization =
+                SentianceHelper.getInstance(getApplicationContext()).initializeAsync();
+
+        if (initialization == null) {
+            Log.e(TAG, "Failed to start Sentiance SDK initialization.");
+            return;
         }
+
+        initialization.addOnCompleteListener(operation -> {
+            if (operation.isSuccessful()) {
+                Log.i(TAG, "Sentiance SDK initialized successfully.");
+            } else {
+                AsyncInitializationError error = operation.getError();
+                Log.e(TAG, "Failed to initialize Sentiance SDK. Error: "
+                        + (error == null ? "unknown" : error.getFailureReason().name()));
+            }
+        });
     }
 
     /**

@@ -8,11 +8,12 @@ This is a sample application to demonstrate how to integrate the Sentiance SDK i
 
 In this sample application we cover the SDK Integration (and SDK user creation) - with [user linking](https://docs.sentiance.com/important-topics/user-linking-2.0)
 
-There are three places you need to look at
+There are four places you need to look at
 
-1. `initializeSentianceSDK` in the `AppDelegate.m`. // iOS native initialization
-2. `initializeSentianceSDK` in the `MainApplication.java`. // Android native initialization
-3. `handleCreateUser` in the `Home/index.tsx`. // sentiance user creation
+1. `initializeSentianceSDK` in the `AppDelegate.m`. // iOS native async initialization
+2. `initializeSentianceSDK` in the `MainApplication.java`. // Android native async initialization
+3. `Initialization/index.tsx`. // awaits `SentianceCore.ensureInitialized()` before showing the app, and surfaces init failures
+4. `handleCreateUser` in the `Home/index.tsx`. // sentiance user creation
 
 ## To run this project:
 

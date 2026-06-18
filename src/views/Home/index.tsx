@@ -1,5 +1,5 @@
 import React, {FC, useState} from 'react';
-import {View, Text, Alert, LogBox} from 'react-native';
+import {View, Text, Alert} from 'react-native';
 import axios from 'axios';
 import BoxButton from '../../components/BoxButton';
 import styles from './styles';
@@ -19,13 +19,15 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
     setLoading(true);
     try {
       const authCodeResponse = await requestAuthCode();
-      const {auth_code: authCode, platform_url: platformUrl} = authCodeResponse.data;
+      const {auth_code: authCode, platform_url: platformUrl} =
+        authCodeResponse.data;
       const createUserResult = await SentianceCore.createUser({
         authCode,
         platformUrl,
       });
       console.log(
-        'Created a new user with the following ID: ' , createUserResult.userInfo.userId
+        'Created a new user with the following ID: ',
+        createUserResult.userInfo.userId,
       );
 
       try {
@@ -37,7 +39,7 @@ const Home: FC<HomeProps> = ({showDashboardScreen}) => {
       setLoading(false);
       showDashboardScreen();
     } catch (err) {
-      console.log("error:" + err.code + " " + "message: " + err.message);
+      console.log('error:' + err.code + ' ' + 'message: ' + err.message);
       setLoading(false);
       Alert.alert(`Error: ${err}`);
     }
